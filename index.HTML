@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Rico | Fotografía</title>
+    <style>
+        /* ==========================================================================
+           RESET Y ESTILOS GLOBALES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           CABECERA Y NAVEGACIÓN
+           ========================================================================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            color: #777;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           SECCIÓN PORTFOLIO (GRID)
+           ========================================================================== */
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Cuadrícula adaptable */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Tarjetas de cada categoría */
+        .portfolio-card {
+            background: #ffffff;
+            border: 1px solid #eee;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Contenedor de la imagen */
+        .card-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .card-image {
+            transform: scale(1.03);
+        }
+
+        .card-info {
+            padding: 1.5rem;
+        }
+
+        .card-info h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* ==========================================================================
+           PIE DE PÁGINA
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eaeaea;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE (MÓVILES)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera / Navegación -->
+    <header>
+        <div class="logo">
+            <h1>DIEGO RICO</h1>
+            <p>FOTOGRAFÍA</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#portfolio" class="active">Portfolio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal: Portfolio -->
+    <main id="portfolio">
+        <div class="section-title">
+            <h2>Portfolio</h2>
+            <p>Una muestra de mis trabajos por categorías</p>
+        </div>
+
+        <div class="portfolio-grid">
+            
+            <!-- Categoría: Prensa -->
+            <div class="portfolio-card">
+                <div class="card-image" style="background-image: url('https://picsum.photos/600/400?random=1');"></div>
+                <div class="card-info">
+                    <h3>Prensa y Editorial</h3>
+                    <p>Fotoperiodismo y cobertura de actualidad.</p>
+                </div>
+            </div>
+
+            <!-- Categoría: Comuniones -->
+            <div class="portfolio-card">
+                <div class="card-image" style="background-image: url('https://picsum.photos/600/400?random=2');"></div>
+                <div class="card-info">
+                    <h3>Comuniones</h3>
+                    <p>Recuerdos naturales y espontáneos en exterior o estudio.</p>
+                </div>
+            </div>
+
+            <!-- Categoría: Bodas -->
+            <div class="portfolio-card">
+                <div class="card-image" style="background-image: url('https://picsum.photos/600/400?random=3');"></div>
+                <div class="card-info">
+                    <h3>Bodas</h3>
+                    <p>Historias de amor contadas desde dentro, sin posados forzados.</p>
+                </div>
+            </div>
+
+            <!-- Categoría: Eventos -->
+            <div class="portfolio-card">
+                <div class="card-image" style="background-image: url('https://picsum.photos/600/400?random=4');"></div>
+                <div class="card-info">
+                    <h3>Eventos</h3>
+                    <p>Espectáculos, conciertos y fotografía corporativa.</p>
+                </div>
+            </div>
+
+            <!-- Categoría Extra: Documental -->
+            <div class="portfolio-card">
+                <div class="card-image" style="background-image: url('https://picsum.photos/600/400?random=5');"></div>
+                <div class="card-info">
+                    <h3>Documental y Proyectos</h3>
+                    <p>Historias de largo recorrido, tradiciones y fotografía de autor.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Diego Rico. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

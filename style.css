@@ -1,0 +1,1239 @@
+
+/* =========================================
+   FONTS
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* =========================================
+   VARIABLES (CONSISTENTES)
+========================================= */
+:root {
+  --bg: #FAF7F2;
+  --white: #FFFFFF;
+
+  --text: #2B2B2B;
+  --text-soft: #6B6B6B;
+
+  --accent: #E07A5F;
+  --sage: #A8B8A0;
+  --sand: #DCCDBF;
+  --blue: #8FA3B8;
+
+  --shadow: 0 12px 35px rgba(0,0,0,0.08);
+  --radius: 18px;
+
+  --transition: all 0.35s ease;
+  --max-width: 1100px;
+}
+
+/* =========================================
+   RESET
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* =========================================
+   FONDO ANIMADO SUAVE (MUY PREMIUM)
+========================================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(168,184,160,0.25), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(224,122,95,0.18), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(143,163,184,0.15), transparent 50%);
+  animation: floatBg 14s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes floatBg {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* =========================================
+   TIPOGRAFÍA
+========================================= */
+h1, h2, h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+p {
+  color: var(--text-soft);
+}
+
+/* =========================================
+   NAVBAR PREMIUM (MEJORADO)
+========================================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  background: rgba(250, 247, 242, 0.55);
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  transition: var(--transition);
+}
+
+/* efecto sutil al hacer scroll (opcional futuro JS) */
+.navbar.scrolled {
+  background: rgba(250, 247, 242, 0.85);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.navbar-inner {
+  max-width: var(--max-width);
+  margin: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 24px;
+}
+
+/* LOGO */
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+
+  color: var(--text);
+
+  position: relative;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+/* LINKS */
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+/* LINKS BASE */
+.nav-links a {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  text-decoration: none;
+  color: var(--text);
+
+  position: relative;
+
+  transition: var(--transition);
+  opacity: 0.85;
+}
+
+/* hover elegante (no subrayado clásico) */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0%;
+  height: 1px;
+
+  background: var(--accent);
+  transition: var(--transition);
+
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.nav-links a:hover::after {
+  width: 60%;
+}
+
+/* BOTÓN RSVP (IMPORTANTE DESTACARLO) */
+.btn-nav {
+  padding: 10px 18px;
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: white !important;
+
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  box-shadow: var(--shadow);
+
+  transition: var(--transition);
+}
+
+.btn-nav:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+}
+/* =========================================
+   HERO (EDITORIAL PREMIUM)
+========================================= */
+.hero {
+   min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* imagen */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("img/hero.jpg") center/cover no-repeat;
+  transform: scale(1.05);
+  filter: brightness(0.55) saturate(1.1);
+  z-index: -2;
+}
+
+/* overlay editorial */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250,247,242,0.15),
+    rgba(250,247,242,0.85)
+  );
+  z-index: -1;
+}
+/* VIDEO */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
+  filter: brightness(0.5) contrast(1.1);
+}
+
+/* overlay cinematográfico */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35),
+    rgba(250,247,242,0.85)
+  );
+  z-index: -2;
+}
+
+/* contenido */
+.hero-content {
+  max-width: 800px;
+  padding: 20px;
+  color: var(--text);
+}
+
+/* acciones */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+/* contenido */
+.hero-content {
+  max-width: 750px;
+}
+
+/* micro texto */
+.hero-kicker {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* título */
+.hero-title {
+  margin: 10px 0;
+}
+
+/* subtítulo */
+.hero-subtitle {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* frase */
+.hero-quote {
+  font-style: italic;
+  margin-bottom: 35px;
+}
+
+/* botón principal */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: white;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* botón secundario */
+.btn-secondary {
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: var(--text);
+  color: white;
+}
+
+/* scroll hint */
+.scroll-down {
+  display: inline-block;
+  margin-top: 25px;
+  font-size: 12px;
+  opacity: 0.7;
+  text-decoration: none;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+/* countdown pro */
+.countdown {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* tarjeta elegante */
+.countdown-box {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.4);
+
+  padding: 16px 18px;
+  border-radius: 16px;
+
+  min-width: 80px;
+  text-align: center;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  transition: all 0.3s ease;
+}
+
+/* hover premium */
+.countdown-box:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+/* números */
+.countdown-box span {
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+  color: var(--text);
+}
+
+/* etiqueta */
+.countdown-box small {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 768px) {
+
+  .nav-links {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 100px 15px 50px;
+  }
+
+  .hero-countdown {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ================================
+   SECCIÓN HISTORIA
+================================ */
+
+.history {
+  padding: 50px 20px;
+  position: relative;
+}
+
+/* encabezado */
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-header h2 {
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: var(--text-soft);
+}
+
+/* contenedor */
+.container {
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+/* ================================
+   TIMELINE
+================================ */
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* línea vertical */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(0,0,0,0.08);
+  transform: translateX(-50%);
+}
+
+/* item */
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+/* año */
+.timeline-year {
+  width: 120px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+}
+
+/* contenido */
+.timeline-content {
+  width: 70%;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+/* títulos */
+.timeline-content h3 {
+  margin-bottom: 8px;
+}
+
+/* highlight (pedida) */
+.timeline-item.highlight .timeline-content {
+  border: 1px solid var(--accent);
+}
+
+/* alternar lados */
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-item:nth-child(even) .timeline-year {
+  text-align: left;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding-left: 30px;
+  }
+
+  .timeline-year {
+    text-align: left !important;
+    margin-bottom: 8px;
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+}
+
+/* ================================
+   SECCIÓN PEDIDA
+================================ */
+
+.pedida {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+
+.video-boda {
+  width: 50%;
+  max-width: 420px;
+
+  margin-top: 15px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+
+  border: 6px solid rgba(255,255,255,0.85);
+
+  transition: all 0.4s ease;
+
+  transform: rotate(-1deg);
+}
+
+.video-boda:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* =========================
+   IMÁGENES TIMELINE (NUEVO LOOK EDITORIAL)
+========================= */
+
+.timeline-content {
+  position: relative;
+}
+
+/* imagen estilo “foto pegada / polaroid” */
+.timeline-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+
+  position: absolute;
+  right: -55px;
+  bottom: -25px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+
+  border: 6px solid rgba(255,255,255,0.85);
+
+  transform: rotate(6deg);
+
+  cursor: pointer;
+
+  transition: all 0.4s ease;
+}
+
+/* alternar lado (para items pares) */
+.timeline-item:nth-child(even) .timeline-img {
+  
+  transform: rotate(-6deg);
+}
+
+/* hover más “vivo” */
+.timeline-img:hover {
+  transform: rotate(0deg) scale(1.08);
+  z-index: 10;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   LIGHTBOX (POPUP PRO)
+========================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+/* =========================
+   VÍDEO TIMELINE (EDITORIAL PRO)
+========================= */
+
+.timeline-video {
+  width: 100%;
+  max-width: 320px;   /* 👈 control real del tamaño */
+  margin: 14px auto 0;
+
+  display: block;
+
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+
+  border: 6px solid rgba(255,255,255,0.85);
+
+  background: white;
+
+  /* look “foto/vídeo impreso” */
+  transform: rotate(-1.5deg);
+  transition: all 0.35s ease;
+
+  object-fit: cover;
+}
+
+/* hover más natural */
+.timeline-video:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* alternar inclinación en items pares */
+.timeline-item:nth-child(even) .timeline-video {
+  transform: rotate(1.5deg);
+}
+
+.timeline-item:nth-child(even) .timeline-video:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+.lightbox img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+
+  .timeline-img {
+    position: relative;
+    right: auto;
+    left: auto;
+    bottom: auto;
+
+    width: 100%;
+    height: auto;
+
+    margin-top: 12px;
+
+    transform: none !important;
+  }
+
+  .timeline-item:nth-child(even) .timeline-img {
+    left: auto;
+  }
+
+  .video-boda {
+    max-width: 100%;
+    transform: none;
+  }
+}
+/* =========================
+   INFO EVENTO (UPGRADE PREMIUM)
+========================= */
+
+.info-evento {
+  padding: 90px 20px;
+}
+
+/* tabs más elegantes */
+.info-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+.tab-btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* contenido */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+/* cards más finas */
+.info-card {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* =========================
+   MINI LINKS → BOTÓN PREMIUM
+========================= */
+
+.mini-links {
+  margin-top: 12px;
+}
+
+/* botón elegante */
+.mini-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 14px;
+
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: var(--text);
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* efecto hover suave premium */
+.mini-links a:hover {
+  transform: translateY(-3px);
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 18px 40px rgba(224, 122, 95, 0.25);
+}
+
+/* animación sutil tipo “shine” */
+.mini-links a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.mini-links a:hover::before {
+  left: 100%;
+}
+
+/* mini timeline */
+.timeline-mini {
+  max-width: 600px;
+  margin: auto;
+}
+
+.mini-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.mini-item span {
+  font-weight: 600;
+  color: var(--accent);
+}
+/* =========================
+   MAPA PREMIUM
+========================= */
+
+.map-card iframe {
+  width: 100%;
+  height: 260px;
+
+  border: none;
+  border-radius: 16px;
+
+  margin-top: 12px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.12);
+
+  filter: grayscale(10%) contrast(1.05);
+
+  transition: all 0.4s ease;
+}
+
+/* hover elegante */
+.map-card iframe:hover {
+  transform: scale(1.02);
+  filter: grayscale(0%) contrast(1.1);
+}
+
+/* link debajo del mapa */
+.mini-links a {
+  display: inline-block;
+  margin-top: 10px;
+
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  color: var(--accent);
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.mini-links a:hover {
+  opacity: 0.7;
+}
+/* =========================
+   GALERÍA PREMIUM MASONRY
+========================= */
+
+.galeria {
+  padding: 100px 20px;
+}
+
+/* GRID MASONRY (CSS COLUMNS — sin librerías) */
+.masonry {
+  column-count: 4;
+  column-gap: 16px;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+/* imágenes */
+.masonry img {
+  width: 100%;
+  margin-bottom: 16px;
+
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+
+  transition: all 0.35s ease;
+
+  break-inside: avoid;
+  display: block;
+
+  filter: saturate(1.05) contrast(1.05);
+}
+
+/* hover editorial */
+.masonry img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .masonry { column-count: 3; }
+}
+
+@media (max-width: 768px) {
+  .masonry { column-count: 2; }
+}
+
+@media (max-width: 480px) {
+  .masonry { column-count: 1; }
+}
+/* =========================
+   REGALOS
+========================= */
+
+.regalos {
+  padding: 90px 20px;
+}
+
+/* =========================
+   FAQ MODERNO
+========================= */
+
+.faq {
+  padding: 90px 20px;
+}
+
+/* lista */
+.faq-list {
+  max-width: 800px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* item */
+.faq-item {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  padding: 16px 18px;
+
+  transition: 0.3s;
+}
+
+/* hover sutil */
+.faq-item:hover {
+  transform: translateY(-3px);
+}
+
+/* pregunta */
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  list-style: none;
+}
+
+/* quitar flecha default */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* respuesta */
+.faq-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+/* =========================
+   PLAYLIST + POSTBODA
+========================= */
+
+.playlist,
+.postboda {
+  padding: 90px 20px;
+}
+
+/* cards con leve “focus moderno” */
+.playlist .info-card,
+.postboda .info-card {
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* efecto hover más emocional */
+.playlist .info-card:hover,
+.postboda .info-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+/* =========================
+   RSVP PAGE
+========================= */
+
+.rsvp-hero {
+  min-height: 45vh;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+.rsvp-hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    url("img/rsvp.jpg") center/cover no-repeat;
+
+  filter: brightness(0.45);
+
+  transform: scale(1.05);
+
+  z-index: -2;
+}
+
+.rsvp-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.25),
+      rgba(250,247,242,0.88)
+    );
+
+  z-index: -1;
+}
+
+.rsvp-content {
+  padding: 120px 20px 80px;
+  max-width: 700px;
+}
+
+.rsvp-section {
+  padding: 80px 20px;
+}
+
+.rsvp-form {
+  max-width: 850px;
+  margin: auto;
+
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(16px);
+
+  border-radius: 28px;
+
+  padding: 35px;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 16px;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(0,0,0,0.08);
+
+  background: rgba(255,255,255,0.7);
+
+  font-family: inherit;
+  font-size: 15px;
+
+  transition: all 0.3s ease;
+
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 4px rgba(224,122,95,0.12);
+}
+
+.submit-btn {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.success-message {
+  display: none;
+
+  margin-top: 20px;
+
+  text-align: center;
+
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-form {
+    padding: 24px;
+  }
+
+}
