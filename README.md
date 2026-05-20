@@ -1,71 +1,53 @@
 # 📸 Diegoricofotos
 
-Web de fotografía creada para un proyecto personal y desplegada automáticamente con Netlify.
+Web sencilla de fotos hecha para mostrar y organizar imágenes de forma fácil.
 
-🌐 **Web online:**  
-https://diegoricofotos.netlify.app/
-
----
-
-## 🚀 Descripción
-
-Este proyecto es una web estática de fotografía desarrollada con:
-
-- HTML5
-- CSS3
-- JavaScript (vanilla)
-- Imágenes optimizadas en carpeta `/img`
-
-El objetivo es tener una web ligera, visual y fácil de mantener.
+🌐 **Ver web:** https://diegoricofotos.netlify.app/
 
 ---
 
-## 🧱 Estructura del proyecto
+## 🧾 ¿Qué es esto?
+
+Es una página web donde se muestran fotos.  
+Está hecha con HTML, CSS y JavaScript básicos.
 
 ---
 
-## ⚙️ Cómo funciona
+## 📁 Archivos del proyecto
 
-El proyecto está conectado a :contentReference[oaicite:0]{index=0} mediante integración con :contentReference[oaicite:1]{index=1}.
-
-🔁 Flujo de trabajo:
-
-1. Se realizan cambios en el código
-2. Se suben a GitHub (push a la rama principal)
-3. Netlify detecta los cambios automáticamente
-4. La web se actualiza en segundos
+- `index.html` → página principal
+- `style.css` → diseño de la web
+- `script.js` → funcionalidades básicas
+- `/img` → carpeta donde están las fotos
 
 ---
 
 ## ✏️ Cómo editar la web
 
-### 🥇 Opción 1: Directo desde GitHub (recomendado para móvil)
+### Desde GitHub (lo más fácil)
 
-- Entra al repositorio en GitHub
-- Abre el archivo que quieras modificar
-- Pulsa el icono ✏️ (editar)
-- Haz cambios
-- Guarda con “Commit changes”
-
----
-
-### 🥈 Opción 2: Editor online tipo VS Code
-
-Puedes usar:
-
-Esto abre un entorno tipo VS Code en el navegador.
-
-✔ Más cómodo que GitHub normal  
-✔ Perfecto para móvil o tablet  
-✔ No requiere instalación  
+1. Entra al repositorio
+2. Abre el archivo que quieras cambiar
+3. Pulsa el botón ✏️ editar
+4. Guarda los cambios (Commit)
 
 ---
 
-### 🥉 Opción 3: Entorno profesional (local)
+### Desde móvil
 
-```bash
-git clone URL_DEL_REPO
-git pull
-git add .
-git commit -m "cambios"
-git push
+- Puedes editar desde la web de GitHub
+- O usar:  
+  https://silver-space-fortnight-jj4x6wp9px6phj556.github.dev/
+
+---
+
+## 🚀 Publicación
+
+La web está conectada a Netlify.  
+Cada vez que se suben cambios a GitHub, la web se actualiza automáticamente.
+
+---
+
+## 📌 Nota
+
+Cualquier cambio en el código se verá directamente en la web.
