@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área de Clientes — Galería Privada</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== CLIENT APP SHELL ===== */
+    .client-app { min-height:100vh; background:var(--blue-900); }
+    .client-topbar {
+      background:rgba(10,18,42,0.95); backdrop-filter:blur(12px);
+      padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;
+      color:#fff; position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(96,165,250,0.1);
+    }
+    .client-topbar__logo { font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:#fff; text-decoration:none; }
+    .client-topbar__logo span { color:var(--accent); }
+    .client-topbar__user { display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; }
+    .client-topbar__avatar {
+      width:34px; height:34px; border-radius:50%; background:var(--blue-500);
+      display:flex; align-items:center; justify-content:center; font-weight:600; font-size:0.82rem;
+    }
+    .client-topbar__logout {
+      background:none; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.6);
+      padding:0.4rem 0.8rem; border-radius:var(--radius); font-size:0.8rem; cursor:pointer;
+      transition:var(--transition); font-family:var(--font-body);
+    }
+    .client-topbar__logout:hover { border-color:#fff; color:#fff; }
+
+    /* ===== TABS ===== */
+    .tabs {
+      display:flex; gap:0; background:rgba(15,34,64,0.8);
+      border-bottom:1px solid rgba(96,165,250,0.15); padding:0 2rem; overflow-x:auto;
+    }
+    .tab-btn {
+      padding:1rem 1.5rem; font-family:var(--font-body); font-size:0.88rem; font-weight:500;
+      color:var(--gray-400); background:none; border:none; white-space:nowrap;
+      border-bottom:2.5px solid transparent; cursor:pointer; transition:var(--transition);
+    }
+    .tab-btn:hover { color:var(--gray-200); }
+    .tab-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .tab-content { display:none; padding:2rem; }
+    .tab-content.active { display:block; }
+
+    /* ===== GALLERY HEADER ===== */
+    .gallery-header {
+      display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;
+      flex-wrap:wrap; gap:1rem;
+    }
+    .gallery-header h2 { font-family:var(--font-display); font-size:1.6rem; color:#fff; margin:0; }
+    .gallery-header p { color:var(--gray-400); font-size:0.9rem; margin:0.3rem 0 0; }
+    .gallery-header__actions { display:flex; gap:1rem; align-items:center; }
+    .selection-counter {
+      background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.2);
+      color:var(--accent); padding:0.5rem 1rem; border-radius:var(--radius);
+      font-size:0.85rem; font-weight:600;
+    }
+
+    /* ===== PHOTO GRID ===== */
+    .photo-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:1rem;
+    }
+    .photo-card {
+      position:relative; border-radius:12px; overflow:hidden; cursor:pointer;
+      transition:transform 0.25s, box-shadow 0.25s; background:#0a1230;
+    }
+    .photo-card:hover { transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,0.3); }
+    .photo-card img { width:100%; height:260px; object-fit:cover; display:block; transition:filter 0.3s; }
+    .photo-card.selected { outline:3px solid var(--accent); outline-offset:-3px; }
+    .photo-card.selected .photo-check { opacity:1; transform:scale(1); }
+    .photo-card.confirmed { opacity:0.55; pointer-events:none; }
+    .photo-card.confirmed::after {
+      content:'✓ Enviada'; position:absolute; bottom:8px; left:8px;
+      background:#16a34a; color:#fff; font-size:0.7rem; font-weight:600;
+      padding:0.25rem 0.6rem; border-radius:20px;
+    }
+    .photo-card.purchased { outline:3px solid #16a34a; outline-offset:-3px; pointer-events:auto!important; }
+    .photo-check {
+      position:absolute; top:10px; right:10px; width:30px; height:30px;
+      background:var(--accent); border-radius:50%; display:flex; align-items:center;
+      justify-content:center; opacity:0; transform:scale(0.5); transition:all 0.2s;
+    }
+    .photo-check svg { width:16px; height:16px; stroke:#fff; stroke-width:3; fill:none; }
+    .photo-number {
+      position:absolute; bottom:8px; left:8px; background:rgba(0,0,0,0.5);
+      color:#fff; font-size:0.7rem; font-weight:600; padding:0.2rem 0.5rem; border-radius:4px;
+    }
+    .watermark {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; font-weight:800; color:rgba(255,255,255,0.3);
+      letter-spacing:0.3em; text-transform:uppercase; pointer-events:none;
+      transform:rotate(-30deg); text-shadow:0 2px 8px rgba(0,0,0,0.2);
+    }
+    .dl-badge {
+      position:absolute; top:10px; right:10px; background:#16a34a; color:#fff;
+      font-size:0.7rem; font-weight:700; padding:0.3rem 0.6rem; border-radius:6px;
+    }
+
+    /* ===== GALLERY LAYOUT (grid + cart sidebar) ===== */
+    .gallery-layout { display:grid; grid-template-columns:1fr 320px; gap:2rem; align-items:start; }
+
+    /* ===== PRICING TIERS ===== */
+    .pricing-tiers {
+      background:rgba(96,165,250,0.06); border:1px solid rgba(96,165,250,0.15);
+      border-radius:12px; padding:1.2rem; margin-bottom:1.5rem;
+    }
+    .pricing-tiers h4 { font-family:var(--font-body); font-size:0.88rem; font-weight:600; margin-bottom:0.6rem; color:var(--accent); }
+    .pricing-tiers ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:0.3rem; }
+    .pricing-tiers li {
+      font-size:0.84rem; color:var(--gray-400); display:flex; justify-content:space-between;
+      padding:0.25rem 0.5rem; border-radius:6px; transition:background 0.2s;
+    }
+    .pricing-tiers li strong { color:var(--accent); }
+    .pricing-tiers li.active-tier { background:rgba(96,165,250,0.1); }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-box {
+      position:sticky; top:80px; background:rgba(15,34,64,0.6); border:1px solid rgba(96,165,250,0.12);
+      border-radius:16px; padding:1.5rem; backdrop-filter:blur(10px);
+    }
+    .cart-box h3 { color:#fff; font-family:var(--font-display); font-size:1.1rem; margin-bottom:1rem; }
+
+    /* ===== LOGIN SCREEN ===== */
+    .login-screen {
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      background:var(--blue-900); position:relative; overflow:hidden;
+    }
+    .login-screen .hero__bg { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=60') center/cover; opacity:0.12; }
+    .login-box {
+      background:rgba(255,255,255,0.97); border-radius:20px; padding:3rem 2.5rem;
+      max-width:400px; width:90%; position:relative; z-index:2;
+      box-shadow:0 20px 60px rgba(0,0,0,0.4); animation:fadeUp 0.6s ease;
+    }
+    .login-box h2 { text-align:center; font-family:var(--font-display); font-size:1.4rem; color:var(--blue-900); margin:0.5rem 0; }
+    .login-box .hint { text-align:center; color:#6b7280; font-size:0.88rem; margin-bottom:1.5rem; display:block; }
+    .login-box label { display:block; font-weight:500; font-size:0.85rem; color:var(--blue-900); margin-bottom:0.3rem; }
+    .login-box input {
+      width:100%; padding:0.75rem 1rem; border:1.5px solid #d1d5db; border-radius:10px;
+      font-size:0.95rem; font-family:var(--font-body); margin-bottom:1rem; transition:border 0.2s;
+      box-sizing:border-box;
+    }
+    .login-box input:focus { border-color:var(--blue-500); outline:none; }
+    .login-box .btn { width:100%; justify-content:center; margin-top:0.5rem; }
+    .login-box .demo-hint {
+      margin-top:1.5rem; padding:1rem; background:#eff6ff; border-radius:10px;
+      font-size:0.8rem; color:#6b7280; text-align:center;
+    }
+    .login-box .demo-hint code {
+      background:#e5e7eb; padding:0.1rem 0.4rem; border-radius:3px; font-size:0.78rem;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { text-align:center; padding:4rem 2rem; color:var(--gray-400); }
+    .empty-state .icon { font-size:3rem; margin-bottom:1rem; }
+    .empty-state h3 { color:#fff; font-family:var(--font-display); margin-bottom:0.5rem; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position:fixed; bottom:2rem; right:2rem; background:var(--blue-500); color:#fff;
+      padding:1rem 1.5rem; border-radius:12px; font-size:0.9rem;
+      box-shadow:0 8px 30px rgba(0,0,0,0.3); z-index:9999;
+      transform:translateY(100px); opacity:0; transition:var(--transition);
+    }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast.toast--error { background:#ef4444; }
+
+    /* ===== PAYMENT OVERLAY ===== */
+    .pay-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999;
+      display:flex; align-items:center; justify-content:center; animation:fadeUp 0.3s ease;
+    }
+    .pay-card {
+      background:#fff; border-radius:20px; padding:2.5rem; max-width:420px; width:90%;
+      text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    }
+    .pay-card .icon { font-size:2.5rem; margin-bottom:1rem; }
+    .pay-card h3 { font-size:1.2rem; margin-bottom:0.5rem; color:var(--blue-900); }
+    .pay-card .amount { font-size:2rem; font-weight:800; color:var(--blue-500); margin:1rem 0 1.5rem; }
+    .pay-card .note { font-size:0.8rem; color:#9ca3af; margin-bottom:1.5rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:968px) {
+      .gallery-layout { grid-template-columns:1fr; }
+      .cart-box { position:static; }
+    }
+    @media (max-width:600px) {
+      .photo-grid { grid-template-columns:repeat(2,1fr); gap:0.5rem; }
+      .photo-card img { height:180px; }
+      .tabs { padding:0 1rem; }
+      .tab-btn { padding:0.8rem 1rem; font-size:0.8rem; }
+      .tab-content { padding:1rem; }
+      .gallery-header { flex-direction:column; align-items:flex-start; }
+    }
+
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ LOGIN SCREEN ============ -->
+  <div id="loginScreen" class="login-screen">
+    <div class="hero__bg"></div>
+    <div class="login-box">
+      <div style="text-align:center;margin-bottom:0.5rem;">
+        <a href="index.html" style="font-family:var(--font-display);font-size:1.4rem;color:var(--blue-900);text-decoration:none;">TU<span style="color:var(--blue-500);">NOMBRE</span></a>
+      </div>
+      <h2>Área de Clientes</h2>
+      <span class="hint">Accede a tu galería privada con tus credenciales.</span>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <label for="loginUser">Usuario</label>
+        <input type="text" id="loginUser" placeholder="Tu usuario" required>
+        <label for="loginPass">Contraseña</label>
+        <input type="password" id="loginPass" placeholder="Tu contraseña" required>
+        <button type="submit" class="btn btn--primary">Acceder a mi galería</button>
+      </form>
+      <p style="text-align:center;margin-top:1.5rem;font-size:0.82rem;color:#9ca3af;">
+        ¿No tienes acceso? <a href="index.html#contacto" style="color:var(--blue-500);font-weight:500;">Contacta conmigo</a>
+      </p>
+      <div class="demo-hint">
+        <strong>Demo:</strong> usuario <code>familia-garcia</code> / contraseña <code>1234</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CLIENT APP (hidden until login) ============ -->
+  <div id="clientApp" class="client-app" style="display:none;">
+    <div class="client-topbar">
+      <a href="index.html" class="client-topbar__logo">TU<span>NOMBRE</span></a>
+      <div class="client-topbar__user">
+        <span id="clientName"></span>
+        <div class="client-topbar__avatar" id="clientAvatar"></div>
+        <button class="client-topbar__logout" onclick="handleLogout()">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('seleccion')">📸 Selección del pack</button>
+      <button class="tab-btn" onclick="switchTab('extras')">🛒 Comprar extras</button>
+      <button class="tab-btn" onclick="switchTab('descargas')">⬇️ Mis descargas</button>
+    </div>
+
+    <!-- TAB 1: Pack Selection -->
+    <div id="tab-seleccion" class="tab-content active">
+      <div class="container">
+        <div class="gallery-header">
+          <div>
+            <h2 id="selTitle">Comunión de Lucía — Selección</h2>
+            <p>Selecciona hasta <strong style="color:var(--accent);">30 fotos</strong> de tu pack para edición.</p>
+          </div>
+          <div class="gallery-header__actions">
+            <div class="selection-counter" id="selCounter">0 / 30 seleccionadas</div>
+            <button class="btn btn--primary" id="confirmBtn" onclick="confirmSelection()" disabled>Confirmar selección</button>
+          </div>
+        </div>
+        <div class="photo-grid" id="selectionGrid"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Buy Extras -->
+    <div id="tab-extras" class="tab-content">
+      <div class="container">
+        <div class="gallery-header">
+          <div>
+            <h2 id="extTitle">Fotos extras — Comunión de Lucía</h2>
+            <p>Selecciona fotos adicionales. El precio baja cuantas más añadas.</p>
+          </div>
+        </div>
+        <div class="gallery-layout">
+          <div>
+            <div class="pricing-tiers" id="pricingTiers">
+              <h4>💰 Precios por volumen</h4>
+              <ul>
+                <li data-tier="0"><span>1–5 fotos</span> <strong>8 € / foto</strong></li>
+                <li data-tier="1"><span>6–15 fotos</span> <strong>6 € / foto</strong></li>
+                <li data-tier="2"><span>16–30 fotos</span> <strong>4 € / foto</strong></li>
+                <li data-tier="3"><span>31+ fotos</span> <strong>3 € / foto</strong></li>
+              </ul>
+            </div>
+            <div class="photo-grid" id="extrasGrid"></div>
+          </div>
+          <div class="cart-box" id="cartBox">
+            <h3>🛒 Tu carrito</h3>
+            <div id="cartDetails">
+              <div style="padding:2rem 0;text-align:center;color:var(--gray-400);font-size:0.88rem;">
+                Selecciona fotos para añadirlas al carrito.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Downloads -->
+    <div id="tab-descargas" class="tab-content">
+      <div class="container">
+        <div class="gallery-header">
+          <div>
+            <h2>Mis descargas</h2>
+            <p>Fotos editadas y compras listas para descargar en máxima calidad.</p>
+          </div>
+        </div>
+        <div id="downloadsArea">
+          <div class="empty-state">
+            <div class="icon">📁</div>
+            <h3>Aún no tienes descargas</h3>
+            <p>Cuando tus fotos editadas estén listas o compres extras, aparecerán aquí.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    /* ----- CONFIG ----- */
+    const CFG = {
+      maxSel: 30, totalPack: 48, totalExtras: 36,
+      tiers: [
+        { min:1, max:5, price:8 },
+        { min:6, max:15, price:6 },
+        { min:16, max:30, price:4 },
+        { min:31, max:999, price:3 }
+      ],
+      users: {
+        'familia-garcia': { pass:'1234', name:'Familia García', ini:'FG', gal:'Comunión de Lucía' },
+        'ana-carlos':     { pass:'5678', name:'Ana & Carlos',   ini:'AC', gal:'Boda Ana & Carlos' },
+        'prensa-laliga':  { pass:'press', name:'LaLiga Press',  ini:'LP', gal:'Jornada 38' }
+      }
+    };
+
+    /* ----- STATE ----- */
+    let S = { user:null, selPack:new Set(), selExtras:new Set(), bought:new Set(), tab:'seleccion' };
+
+    /* ----- HELPERS ----- */
+    const imgs = [
+      'photo-1519741497674-611481863552','photo-1502086223501-7ea6ecd79368',
+      'photo-1544005313-94ddf0286df2','photo-1529543544318-af67a4092fbc',
+      'photo-1492684223066-81342ee5ff30','photo-1507003211169-0a1dd7228f2d',
+      'photo-1517841905240-472988babdf9','photo-1524504388940-b1c1722653e1',
+      'photo-1519389950473-47ba0277781c','photo-1494790108377-be9c29b29330',
+      'photo-1504257432389-52343af06ae3','photo-1531746020798-e6953c6e8e04'
+    ];
+    function photoUrl(seed, w=400) {
+      return `https://images.unsplash.com/${imgs[seed % imgs.length]}?w=${w}&h=${Math.round(w*1.25)}&fit=crop&q=60&seed=${seed}`;
+    }
+    function getPrice(qty) {
+      if (!qty) return 0;
+      const t = CFG.tiers.find(t => qty >= t.min && qty <= t.max);
+      return t ? t.price : CFG.tiers.at(-1).price;
+    }
+    function toast(msg, err) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (err ? ' toast--error' : '');
+      clearTimeout(t._t);
+      t._t = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    /* ===== LOGIN ===== */
+    function handleLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('loginUser').value.trim().toLowerCase();
+      const p = document.getElementById('loginPass').value;
+      const m = CFG.users[u];
+      if (m && m.pass === p) {
+        loginAs(u);
+      } else {
+        toast('Usuario o contraseña incorrectos', true);
+        document.getElementById('loginPass').value = '';
+        const box = document.querySelector('.login-box');
+        box.style.animation = 'none'; box.offsetHeight;
+        box.style.animation = 'shake 0.4s ease';
+      }
+    }
+    function loginAs(key) {
+      const u = CFG.users[key];
+      S.user = key;
+      sessionStorage.setItem('gal_user', key);
+      document.getElementById('clientName').textContent = u.name;
+      document.getElementById('clientAvatar').textContent = u.ini;
+      document.getElementById('selTitle').textContent = `${u.gal} — Selección`;
+      document.getElementById('extTitle').textContent = `Fotos extras — ${u.gal}`;
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('clientApp').style.display = 'block';
+      buildSelectionGrid();
+      buildExtrasGrid();
+      toast(`¡Bienvenido/a, ${u.name}!`);
+    }
+    function handleLogout() {
+      sessionStorage.removeItem('gal_user');
+      S = { user:null, selPack:new Set(), selExtras:new Set(), bought:new Set(), tab:'seleccion' };
+      document.getElementById('loginScreen').style.display = '';
+      document.getElementById('clientApp').style.display = 'none';
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+    }
+    // Auto-login from session
+    (function() {
+      const saved = sessionStorage.getItem('gal_user');
+      if (saved && CFG.users[saved]) loginAs(saved);
+    })();
+
+    /* ===== TABS ===== */
+    function switchTab(id) {
+      S.tab = id;
+      const names = ['seleccion','extras','descargas'];
+      document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', names[i]===id));
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.toggle('active', el.id === 'tab-'+id));
+    }
+
+    /* ===== TAB 1: PACK SELECTION ===== */
+    function buildSelectionGrid() {
+      const g = document.getElementById('selectionGrid'); g.innerHTML = '';
+      for (let i = 0; i < CFG.totalPack; i++) {
+        const c = document.createElement('div');
+        c.className = 'photo-card'; c.dataset.idx = i;
+        c.innerHTML = `
+          <img src="${photoUrl(i)}" alt="Foto ${i+1}" loading="lazy">
+          <div class="photo-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="photo-number">${i+1}</div>`;
+        c.addEventListener('click', () => togglePack(i, c));
+        g.appendChild(c);
+      }
+    }
+    function togglePack(i, c) {
+      if (S.selPack.has(i)) { S.selPack.delete(i); c.classList.remove('selected'); }
+      else {
+        if (S.selPack.size >= CFG.maxSel) { toast(`Máximo ${CFG.maxSel} fotos. Deselecciona alguna primero.`, true); return; }
+        S.selPack.add(i); c.classList.add('selected');
+      }
+      const n = S.selPack.size;
+      document.getElementById('selCounter').textContent = `${n} / ${CFG.maxSel} seleccionadas`;
+      document.getElementById('confirmBtn').disabled = n === 0;
+    }
+    function confirmSelection() {
+      if (!S.selPack.size) return;
+      const n = S.selPack.size;
+      toast(`✓ ${n} foto${n>1?'s':''} enviada${n>1?'s':''} para edición. Te avisaremos cuando estén listas.`);
+      document.querySelectorAll('#selectionGrid .photo-card.selected').forEach(c => {
+        c.classList.add('confirmed'); c.style.pointerEvents = 'none';
+      });
+      const btn = document.getElementById('confirmBtn');
+      btn.disabled = true; btn.textContent = '✓ Selección enviada';
+    }
+
+    /* ===== TAB 2: EXTRAS ===== */
+    function buildExtrasGrid() {
+      const g = document.getElementById('extrasGrid'); g.innerHTML = '';
+      for (let i = 0; i < CFG.totalExtras; i++) {
+        const pi = i + CFG.totalPack;
+        const c = document.createElement('div');
+        c.className = 'photo-card'; c.dataset.ext = i;
+        c.innerHTML = `
+          <img src="${photoUrl(pi)}" alt="Extra ${i+1}" loading="lazy">
+          <div class="watermark">MARCA DE AGUA</div>
+          <div class="photo-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>`;
+        c.addEventListener('click', () => toggleExtra(i, c));
+        g.appendChild(c);
+      }
+    }
+    function toggleExtra(i, c) {
+      if (S.bought.has(i)) return;
+      if (S.selExtras.has(i)) { S.selExtras.delete(i); c.classList.remove('selected'); }
+      else { S.selExtras.add(i); c.classList.add('selected'); }
+      updateCart();
+    }
+    function updateCart() {
+      const d = document.getElementById('cartDetails');
+      const qty = S.selExtras.size;
+      // Highlight active tier
+      document.querySelectorAll('#pricingTiers li').forEach(li => li.classList.remove('active-tier'));
+      if (qty > 0) {
+        const ti = CFG.tiers.findIndex(t => qty >= t.min && qty <= t.max);
+        const li = document.querySelector(`#pricingTiers li[data-tier="${ti}"]`);
+        if (li) li.classList.add('active-tier');
+      }
+      if (!qty) {
+        d.innerHTML = '<div style="padding:2rem 0;text-align:center;color:var(--gray-400);font-size:0.88rem;">Selecciona fotos para añadirlas al carrito.</div>';
+        return;
+      }
+      const pp = getPrice(qty), total = qty * pp;
+      const ti = CFG.tiers.findIndex(t => qty >= t.min && qty <= t.max);
+      const next = CFG.tiers[ti + 1];
+      let upsell = '';
+      if (next) {
+        const diff = next.min - qty;
+        upsell = `<div style="font-size:0.78rem;color:var(--gold);padding:0.5rem;background:rgba(212,175,55,0.08);border-radius:8px;margin-bottom:1rem;">
+          💡 Añade ${diff} foto${diff>1?'s':''} más para pagar ${next.price}€/foto</div>`;
+      }
+      d.innerHTML = `
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem;color:#fff;">
+            <span>${qty} foto${qty>1?'s':''} extra${qty>1?'s':''}</span><span>${pp}€ c/u</span>
+          </div>
+          ${upsell}
+          <hr style="border:none;border-top:1px solid rgba(96,165,250,0.15);margin:0.8rem 0;">
+          <div style="display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;color:#fff;">
+            <span>Total</span><span>${total}€</span>
+          </div>
+        </div>
+        <button class="btn btn--gold" style="width:100%;" onclick="openPayment()">💳 Pagar ${total}€</button>
+        <button class="btn btn--outline" style="width:100%;margin-top:0.5rem;font-size:0.85rem;" onclick="clearExtras()">Vaciar carrito</button>`;
+    }
+    function clearExtras() {
+      S.selExtras.clear();
+      document.querySelectorAll('#extrasGrid .photo-card').forEach(c => {
+        if (!S.bought.has(+c.dataset.ext)) c.classList.remove('selected');
+      });
+      updateCart();
+    }
+
+    /* ===== PAYMENT ===== */
+    function openPayment() {
+      const qty = S.selExtras.size; if (!qty) return;
+      const total = qty * getPrice(qty);
+      const ov = document.createElement('div');
+      ov.id = 'payOverlay'; ov.className = 'pay-overlay';
+      ov.innerHTML = `<div class="pay-card">
+        <div class="icon">💳</div>
+        <h3>Confirmar pago</h3>
+        <p style="color:#6b7280;">${qty} foto${qty>1?'s':''} extra${qty>1?'s':''} en alta calidad</p>
+        <div class="amount">${total}€</div>
+        <p class="note">Demo — En producción se conectará con Stripe/PayPal</p>
+        <button class="btn btn--gold" style="width:100%;margin-bottom:0.8rem;" onclick="processPayment()">✓ Confirmar y pagar</button>
+        <button class="btn btn--outline" style="width:100%;" onclick="document.getElementById('payOverlay').remove()">Cancelar</button>
+      </div>`;
+      document.body.appendChild(ov);
+    }
+    function processPayment() {
+      const ov = document.getElementById('payOverlay');
+      const inner = ov.querySelector('.pay-card');
+      inner.innerHTML = '<div class="icon">⏳</div><h3>Procesando pago...</h3><p style="color:#9ca3af;margin-top:0.5rem;">No cierres esta ventana</p>';
+      setTimeout(() => {
+        const count = S.selExtras.size;
+        S.selExtras.forEach(i => S.bought.add(i));
+        S.selExtras.clear();
+        // Unlock photos
+        document.querySelectorAll('#extrasGrid .photo-card').forEach(c => {
+          const i = +c.dataset.ext;
+          if (S.bought.has(i)) {
+            c.classList.remove('selected'); c.classList.add('purchased');
+            const wm = c.querySelector('.watermark'); if (wm) wm.style.display = 'none';
+            if (!c.querySelector('.dl-badge')) { const b = document.createElement('div'); b.className='dl-badge'; b.textContent='⬇ HD'; c.appendChild(b); }
+            c.style.pointerEvents = 'none';
+          }
+        });
+        updateCart();
+        updateDownloads();
+        inner.innerHTML = `<div class="icon">✅</div>
+          <h3 style="color:#16a34a;">¡Pago completado!</h3>
+          <p style="color:#6b7280;margin:0.5rem 0 1.5rem;">${count} foto${count>1?'s':''} desbloqueada${count>1?'s':''} en alta calidad</p>
+          <button class="btn btn--primary" style="width:100%;" onclick="document.getElementById('payOverlay').remove();switchTab('descargas');">Ver mis descargas</button>`;
+        toast(`✓ ${count} foto${count>1?'s':''} desbloqueada${count>1?'s':''}`);
+      }, 2000);
+    }
+
+    /* ===== TAB 3: DOWNLOADS ===== */
+    function updateDownloads() {
+      const a = document.getElementById('downloadsArea');
+      if (!S.bought.size) {
+        a.innerHTML = '<div class="empty-state"><div class="icon">📁</div><h3>Aún no tienes descargas</h3><p>Cuando tus fotos editadas estén listas o compres extras, aparecerán aquí.</p></div>';
+        return;
+      }
+      let h = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <p style="color:var(--gray-400);">${S.bought.size} foto${S.bought.size>1?'s':''} disponible${S.bought.size>1?'s':''} en alta calidad</p>
+        <button class="btn btn--primary" onclick="toast('Preparando ZIP con ${S.bought.size} fotos en alta calidad...')">⬇ Descargar todas (.zip)</button>
+      </div><div class="photo-grid">`;
+      S.bought.forEach(i => {
+        h += `<div class="photo-card purchased" style="cursor:pointer;" onclick="toast('Descargando foto en alta calidad...')">
+          <img src="${photoUrl(i + CFG.totalPack)}" alt="Descarga" loading="lazy">
+          <div class="dl-badge">⬇ HD</div>
+        </div>`;
+      });
+      a.innerHTML = h + '</div>';
+    }
+  </script>
+</body>
+</html>
