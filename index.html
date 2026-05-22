@@ -11,7 +11,9 @@
   <!-- ═══════════ NAVBAR ═══════════ -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="navbar__logo">DIEGO<span>RICO</span></a>
+      <a href="index.html" class="navbar__logo">
+  <img src="https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/Logo%20en%20blanco.png" alt="Diego Rico Fotografía" style="height: 100px; width: auto; display: block;">
+      </a>
       <ul class="navbar__links" id="navLinks">
         <li><a href="#portfolio" class="active">Portfolio</a></li>
         <li><a href="#video">Vídeo</a></li>
@@ -29,7 +31,8 @@
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="inicio">
-    <div class="hero__bg"></div>
+<div class="hero__bg" style="background-image: url('https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/FOTOS/_CA_0073_2.jpg'); 
+    background-size: cover; background-position: center; background-repeat: no-repeat;"></div>    
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <p class="hero__tag">Fotografía & Vídeo Profesional</p>
@@ -126,14 +129,23 @@
           <p class="section__tag">Confianza</p>
           <h2 class="section__title">Clientes que confían en nosotros</h2>
         </div>
-        <div class="clients-grid">
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+1" alt="Cliente"></div>
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+2" alt="Cliente"></div>
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+3" alt="Cliente"></div>
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+4" alt="Cliente"></div>
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+5" alt="Cliente"></div>
-          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+6" alt="Cliente"></div>
-        </div>
+        
+        <div class="clients-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; align-items: start;">
+          
+          <div class="clients-grid__item" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/CLIENTES/NORTE%20DE%20CASTILLA.jpg" alt="El Norte de Castilla" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 1rem;">
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin: 0; max-width: 220px;">Prensa, fotorreportajes y cobertura de eventos editoriales.</p>
+          </div>
+
+          <div class="clients-grid__item" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/CLIENTES/SANTOVENIA%20DE%20PISUERGA.png" alt="Santovenia de Pisuerga" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 1rem;">
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin: 0; max-width: 220px;">Fotografía institucional, eventos culturales y prensa local.</p>
+          </div>
+
+          <div class="clients-grid__item" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/CLIENTES/VISUALFRAMEE.png" alt="Visualframee" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 1rem;">
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin: 0; max-width: 220px;">Colaboraciones audiovisuales, producciones de vídeo y cine corporativo.</p>
+          </div>
       </div>
     </div>
   </section>
@@ -155,29 +167,22 @@
         <p class="section__subtitle">Producciones audiovisuales con un acabado cinematográfico</p>
       </div>
       <div class="video-grid fade-in">
-        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <div class="video-card" onclick="openVideoModal('https://youtu.be/x12rMhjbhkA')">
           <img class="video-card__thumb" src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=700&q=80" alt="Vídeo Boda">
           <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           <div class="video-card__info">
-            <h3 class="video-card__title">Wedding Film — Ana & Carlos</h3>
-            <p class="video-card__category">Bodas</p>
+            <h3 class="video-card__title">Spot Publicitario</h3>
+            <p class="video-card__category">Publicidad</p>
           </div>
         </div>
-        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/watch?v=tThP7SsC04U')">
           <img class="video-card__thumb" src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700&q=80" alt="Vídeo Evento">
           <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           <div class="video-card__info">
-            <h3 class="video-card__title">Cobertura — Gala Corporativa</h3>
+            <h3 class="video-card__title">La espera va terminando - Jueves Santo 2026</h3>
             <p class="video-card__category">Eventos</p>
           </div>
         </div>
-        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
-          <img class="video-card__thumb" src="https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=700&q=80" alt="Vídeo Comunión">
-          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-          <div class="video-card__info">
-            <h3 class="video-card__title">Comunión — Pablo</h3>
-            <p class="video-card__category">Comuniones</p>
-          </div>
         </div>
       </div>
     </div>
@@ -196,13 +201,24 @@
     <div class="container">
       <div class="about-grid fade-in">
         <div class="about__image">
-          <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Fotógrafo">
+          <div class="about__image">
+            <img src="https://raw.githubusercontent.com/ricodoit/diegoricofotos/main/img/FOTOS/CASA%20ARTURO.jpg" alt="Fotógrafo">
         </div>
+      </div>
         <div class="about__text">
           <p class="section__tag">Sobre mí</p>
           <h2>Pasión detrás del <em style="color:var(--accent)">objetivo</em></h2>
-          <p>Soy fotógrafo y videógrafo profesional con más de 10 años de experiencia capturando momentos irrepetibles. Mi enfoque combina un estilo documental con una estética cinematográfica que transforma cada imagen en una pieza narrativa.</p>
-          <p>He trabajado con marcas, medios de comunicación y cientos de familias que buscan algo más que una simple foto: buscan una experiencia visual que les acompañe para siempre.</p>
+          <p style="text-align: justify;">
+            ¿Qué tal? Soy Diego Rico. En el mundo digital me encuentras como @diegoricofotos, pero mi verdadero lenguaje es el que hablo a través de la lente. 
+            Mi historia con la imagen no es algo que sucedió por casualidad. Es algo que siempre me ha llamado la atención y que se convirtió en una profesión cuando me gradué en Audiovisuales en la Vega del Prado en Valladolid en el año 2021. 
+            Desde ese momento, he tenido un objetivo claro: crear imágenes que puedan expresarse por sí solas y que tengan la fuerza necesaria para transmitir un mensaje sin necesidad de palabras. 
+            La imagen es algo que me apasiona y que quiero seguir explorando para crear cosas que realmente hablen por sí solas. No estoy buscando algo fácil de conseguir. 
+            Lo que realmente me importa es la técnica, la luz y la composición. Quiero que cada foto sea perfecta. Creo que siempre hay que estar aprendiendo. 
+            Me comprometo a que cada vez que hago una foto, el resultado sea de alta calidad.
+          </p>
+          <p style="text-align: justify;">
+            ¿Necesitas que tu proyecto cobre vida? Mi visión no se limita a la foto fija. También desarrollo contenido en vídeo de alto impacto para que tu mensaje llegue más lejos y con más fuerza. Tú pon la escena, yo pongo la visión.
+          </p>
           <div class="about__stats">
             <div><div class="about__stat-number">+500</div><div class="about__stat-label">Sesiones</div></div>
             <div><div class="about__stat-number">+10</div><div class="about__stat-label">Años exp.</div></div>
@@ -249,6 +265,9 @@
       </div>
 
       <!-- FAQ -->
+      <!-- ═══════════ SECCIÓN FAQ OCULTA (Comentada) ═══════════ 
+     Si quieres que vuelva a aparecer en la web, solo borra esta línea de arriba y la última línea de abajo (-->) 
+
       <div style="margin-top:5rem;" class="fade-in">
         <div class="section__header">
           <p class="section__tag">FAQ</p>
@@ -288,6 +307,8 @@
         </div>
       </div>
     </div>
+    </div>
+    
   </section>
 
   <!-- ═══════════ CONTACTO ═══════════ -->
@@ -300,15 +321,15 @@
           <p>Cuéntame qué tienes en mente y te responderé en menos de 24 horas con una propuesta personalizada.</p>
           <div class="contact__detail">
             <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <span>hola@tunombre.com</span>
+            <span>diegoricofotos@gmail.com</span>
           </div>
           <div class="contact__detail">
             <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.56.29 1.1.5 1.63.18.46.08.98-.26 1.32l-1.27 1.27a16 16 0 006 6l1.27-1.27a2 2 0 011.32-.26c.53.21 1.07.38 1.63.5A2 2 0 0122 16.92z"/></svg></div>
-            <span>+34 600 000 000</span>
+            <span>+34 618 38 22 71</span>
           </div>
           <div class="contact__detail">
             <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <span>Madrid, España</span>
+            <span>Valladolid, España</span>
           </div>
         </div>
 
@@ -321,11 +342,11 @@
           <div class="form__row">
             <div class="form__group">
               <label class="form__label" for="email">Email</label>
-              <input type="email" class="form__input" id="email" placeholder="tu@email.com">
+              <input type="email" class="form__input" id="email" placeholder="Tu correo">
             </div>
             <div class="form__group">
               <label class="form__label" for="telefono">Teléfono</label>
-              <input type="tel" class="form__input" id="telefono" placeholder="+34 600 000 000">
+              <input type="tel" class="form__input" id="telefono" placeholder="+34 000 00 00 00">
             </div>
           </div>
           <div class="form__group">
@@ -388,15 +409,47 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
+        
         <div class="footer__brand">
-          <h3>TU<span style="color:var(--accent)">NOMBRE</span></h3>
-          <p>Fotografía y vídeo profesional en Madrid. Bodas, comuniones, eventos y prensa con un sello personal e irrepetible.</p>
+          <h3>Diego <span style="color:var(--accent)">Rico</span></h3>
+          <p>Fotografía y vídeo profesional en Valladolid. Bodas, comuniones, eventos y prensa con un sello personal e irrepetible.</p>
         </div>
-        <div><h4>Navegación</h4><ul class="footer__links"><li><a href="#portfolio">Portfolio</a></li><li><a href="#video">Vídeo</a></li><li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#reservas">Reservas</a></li></ul></div>
-        <div><h4>Servicios</h4><ul class="footer__links"><li><a href="#">Bodas</a></li><li><a href="#">Comuniones</a></li><li><a href="#">Eventos</a></li><li><a href="#">Prensa</a></li></ul></div>
-        <div><h4>Legal</h4><ul class="footer__links"><li><a href="#">Política de Privacidad</a></li><li><a href="#">Aviso Legal</a></li><li><a href="#">Cookies</a></li></ul></div>
+        
+        <div>
+          <h4>Navegación</h4>
+          <ul class="footer__links">
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#video">Vídeo</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4>Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="#contacto">Bodas</a></li>
+            <li><a href="#contacto">Comuniones</a></li>
+            <li><a href="#contacto">Eventos</a></li>
+            <li><a href="#contacto">Prensa</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4>Legal</h4>
+          <ul class="footer__links">
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="aviso-legal.html">Aviso Legal</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+        
       </div>
-      <div class="footer__bottom"><p>&copy; 2026 TUNOMBRE — Todos los derechos reservados.</p></div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2026 Diego Rico — Todos los derechos reservados.</p>
+      </div>
+      
     </div>
   </footer>
 
