@@ -2,7 +2,7 @@
 
 Web sencilla de fotos hecha para mostrar y organizar imágenes de forma fácil.
 
-🌐 **Ver web:** https://diegoricofotos.netlify.app/
+🌐 **Ver web:** https://ricodoit.github.io/diegoricofotos/
 
 ---
 
