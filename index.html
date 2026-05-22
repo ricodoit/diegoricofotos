@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Diego Rico Fotos — Fotografía & Vídeo Profesional</title>
-
-  <meta
-    name="description"
-    content="Fotografía y vídeo profesional en Madrid. Bodas, comuniones, eventos y contenido audiovisual con una estética natural, elegante y cinematográfica."
-  />
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TU NOMBRE — Fotografía & Vídeo Profesional</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <!-- ═══════════ NAVBAR ═══════════ -->
   <nav class="navbar" id="navbar">
     <div class="container">
-
-      <a href="index.html" class="navbar__logo">
-        <img src="img/diegoricofotos logo.png" alt="Diego Rico Fotos">
-      </a>
-
+      <a href="index.html" class="navbar__logo">TU<span>NOMBRE</span></a>
       <ul class="navbar__links" id="navLinks">
         <li><a href="#portfolio" class="active">Portfolio</a></li>
         <li><a href="#video">Vídeo</a></li>
@@ -31,865 +19,443 @@
         <li><a href="#reservas">Reservas</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="galeria-privada.html">Área Cliente</a></li>
-
-        <li>
-          <a href="#reservas" class="navbar__cta">
-            Reservar
-          </a>
-        </li>
+        <li><a href="#reservas" class="navbar__cta">Reservar</a></li>
       </ul>
-
       <button class="navbar__toggle" id="navToggle" aria-label="Menú">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
-
     </div>
   </nav>
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="inicio">
-
     <div class="hero__bg"></div>
-
     <div class="hero__overlay"></div>
-
     <div class="hero__content">
-
-      <p class="hero__tag">
-        DIEGO RICO · FOTOGRAFÍA & VÍDEO
-      </p>
-
-      <h1 class="hero__title">
-        Capturando momentos<br>
-        con alma <em>cinematográfica</em>
-      </h1>
-
-      <p class="hero__subtitle">
-        Bodas, comuniones, eventos y fotografía editorial en Madrid.
-        Imágenes naturales, elegantes y emocionales que cuentan historias reales.
-      </p>
-
+      <p class="hero__tag">Fotografía & Vídeo Profesional</p>
+      <h1 class="hero__title">Momentos que se <em>sienten</em></h1>
+      <p class="hero__subtitle">Bodas, comuniones, eventos y prensa. Capturamos la esencia de cada instante con una mirada cinematográfica y única.</p>
       <div class="hero__buttons">
-
-        <a href="#portfolio" class="btn btn--primary">
-          Ver Portfolio
-        </a>
-
-        <a href="#reservas" class="btn btn--outline">
-          Reservar Sesión
-        </a>
-
+        <a href="#portfolio" class="btn btn--primary">Ver Portfolio</a>
+        <a href="#reservas" class="btn btn--outline">Reservar Sesión</a>
       </div>
-
-      <div class="hero__mini-info">
-
-        <span>📍 Madrid</span>
-
-        <span>📸 +500 sesiones</span>
-
-        <span>🎞️ Foto & Vídeo</span>
-
-      </div>
-
     </div>
-
-    <div class="hero__scroll">
-
-      <div class="hero__scroll-mouse">
-        <div class="hero__scroll-dot"></div>
+    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);opacity:0;animation:fadeUp 0.8s 1.8s forwards;">
+      <div style="width:24px;height:40px;border:2px solid rgba(255,255,255,0.3);border-radius:12px;display:flex;justify-content:center;padding-top:6px;">
+        <div style="width:4px;height:8px;background:var(--accent);border-radius:2px;animation:scrollBounce 1.5s infinite;"></div>
       </div>
-
     </div>
-
   </section>
+  <style>
+    @keyframes scrollBounce { 0%,100%{transform:translateY(0);opacity:1} 50%{transform:translateY(8px);opacity:.3} }
+  </style>
 
-  <!-- ═══════════ PREMIUM STRIP ═══════════ -->
-  <section class="premium-strip">
-
-    <div class="container premium-strip__container">
-
-      <div class="premium-strip__item">
-
-        <span>🎞️</span>
-
-        <div>
-          <strong>Estilo Cinematográfico</strong>
-
-          <p>
-            Fotografía natural con acabado editorial
-          </p>
-        </div>
-
-      </div>
-
-      <div class="premium-strip__item">
-
-        <span>⚡</span>
-
-        <div>
-          <strong>Entrega Rápida</strong>
-
-          <p>
-            Galerías privadas y entrega optimizada
-          </p>
-        </div>
-
-      </div>
-
-      <div class="premium-strip__item">
-
-        <span>📍</span>
-
-        <div>
-          <strong>Madrid & España</strong>
-
-          <p>
-            Disponible para sesiones y eventos
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ═══════════ PORTFOLIO ═══════════ -->
+  <!-- ═══════════ PORTFOLIO FOTOGRÁFICO ═══════════ -->
   <section class="section section--gradient" id="portfolio">
-
     <div class="container">
-
       <div class="section__header fade-in">
-
-        <p class="section__tag">
-          Portfolio
-        </p>
-
-        <h2 class="section__title">
-          Cada imagen, una historia
-        </h2>
-
-        <p class="section__subtitle">
-          Explora diferentes trabajos y estilos visuales
-        </p>
-
+        <p class="section__tag">Portfolio</p>
+        <h2 class="section__title">Cada imagen, una historia</h2>
+        <p class="section__subtitle">Explora nuestro trabajo dividido por categorías</p>
       </div>
-
-      <!-- FILTERS -->
       <div class="portfolio__tabs fade-in">
-
-        <button class="portfolio__tab active" data-filter="all">
-          Todos
-        </button>
-
-        <button class="portfolio__tab" data-filter="comuniones">
-          Comuniones
-        </button>
-
-        <button class="portfolio__tab" data-filter="bodas">
-          Bodas
-        </button>
-
-        <button class="portfolio__tab" data-filter="eventos">
-          Eventos
-        </button>
-
-        <button class="portfolio__tab" data-filter="prensa">
-          Prensa
-        </button>
-
+        <button class="portfolio__tab active" data-filter="all">Todos</button>
+        <button class="portfolio__tab" data-filter="comuniones">Comuniones</button>
+        <button class="portfolio__tab" data-filter="bodas">Bodas</button>
+        <button class="portfolio__tab" data-filter="eventos">Eventos</button>
+        <button class="portfolio__tab" data-filter="prensa">Prensa</button>
       </div>
-
-      <!-- GALLERY -->
       <div class="masonry" id="masonryGrid">
-
-        <!-- COMUNIONES -->
         <div class="masonry__item" data-category="comuniones">
           <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=600&q=80" alt="Comunión">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Comunión · María
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Comunión · María</span></div>
         </div>
-
         <div class="masonry__item" data-category="comuniones">
           <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80" alt="Comunión">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Comunión · Pablo
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Comunión · Pablo</span></div>
         </div>
-
         <div class="masonry__item" data-category="comuniones">
           <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&q=80" alt="Comunión">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Comunión · Lucía
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Comunión · Lucía</span></div>
         </div>
-
-        <!-- BODAS -->
         <div class="masonry__item" data-category="bodas">
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Boda">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Boda · Ana & Carlos
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Boda · Ana & Carlos</span></div>
         </div>
-
         <div class="masonry__item" data-category="bodas">
           <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80" alt="Boda">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Boda · Laura & David
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Boda · Laura & David</span></div>
         </div>
-
         <div class="masonry__item" data-category="bodas">
           <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Boda">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Boda · Elena & Miguel
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Boda · Elena & Miguel</span></div>
         </div>
-
-        <!-- EVENTOS -->
+        <div class="masonry__item" data-category="bodas">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Boda">
+          <div class="masonry__overlay"><span class="masonry__caption">Boda · Sara & Javier</span></div>
+        </div>
         <div class="masonry__item" data-category="eventos">
           <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Evento">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Evento Corporativo
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Evento Corporativo</span></div>
         </div>
-
         <div class="masonry__item" data-category="eventos">
           <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Evento">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Gala Benéfica
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Gala Benéfica</span></div>
         </div>
-
-        <!-- PRENSA -->
+        <div class="masonry__item" data-category="eventos">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Evento">
+          <div class="masonry__overlay"><span class="masonry__caption">Concierto Live</span></div>
+        </div>
         <div class="masonry__item" data-category="prensa">
           <img src="https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=600&q=80" alt="Prensa">
-          <div class="masonry__overlay">
-            <span class="masonry__caption">
-              Rueda de Prensa
-            </span>
-          </div>
+          <div class="masonry__overlay"><span class="masonry__caption">Rueda de Prensa</span></div>
         </div>
-
+        <div class="masonry__item" data-category="prensa">
+          <img src="https://images.unsplash.com/photo-1577962917302-cd874462e648?w=600&q=80" alt="Prensa">
+          <div class="masonry__overlay"><span class="masonry__caption">Cobertura Deportiva</span></div>
+        </div>
+        <div class="masonry__item" data-category="prensa">
+          <img src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=600&q=80" alt="Prensa">
+          <div class="masonry__overlay"><span class="masonry__caption">Editorial</span></div>
+        </div>
       </div>
 
+      <!-- Clientes B2B -->
+      <div style="margin-top:5rem;" class="fade-in">
+        <div class="section__header">
+          <p class="section__tag">Confianza</p>
+          <h2 class="section__title">Clientes que confían en nosotros</h2>
+        </div>
+        <div class="clients-grid">
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+1" alt="Cliente"></div>
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+2" alt="Cliente"></div>
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+3" alt="Cliente"></div>
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+4" alt="Cliente"></div>
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+5" alt="Cliente"></div>
+          <div class="clients-grid__item"><img src="https://placehold.co/200x80/0f2240/60a5fa?text=MARCA+6" alt="Cliente"></div>
+        </div>
+      </div>
     </div>
-
   </section>
 
-  <!-- ═══════════ LIGHTBOX ═══════════ -->
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
-
-    <button class="lightbox__close" onclick="closeLightbox()">
-      ✕
-    </button>
-
-    <button class="lightbox__nav lightbox__nav--prev" onclick="navLightbox(-1)">
-      ‹
-    </button>
-
+    <button class="lightbox__close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" onclick="navLightbox(-1)">‹</button>
     <img src="" alt="" id="lightboxImg">
-
-    <button class="lightbox__nav lightbox__nav--next" onclick="navLightbox(1)">
-      ›
-    </button>
-
+    <button class="lightbox__nav lightbox__nav--next" onclick="navLightbox(1)">›</button>
   </div>
 
-  <!-- ═══════════ VIDEO ═══════════ -->
+  <!-- ═══════════ PORTFOLIO VÍDEO ═══════════ -->
   <section class="section section--dark" id="video">
-
     <div class="container">
-
       <div class="section__header fade-in">
-
-        <p class="section__tag">
-          Vídeo
-        </p>
-
-        <h2 class="section__title">
-          Historias en movimiento
-        </h2>
-
-        <p class="section__subtitle">
-          Producciones audiovisuales con estética cinematográfica
-        </p>
-
+        <p class="section__tag">Vídeo</p>
+        <h2 class="section__title">Historias en movimiento</h2>
+        <p class="section__subtitle">Producciones audiovisuales con un acabado cinematográfico</p>
       </div>
-
       <div class="video-grid fade-in">
-
         <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
-
-          <img
-            class="video-card__thumb"
-            src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=700&q=80"
-            alt="Vídeo Boda"
-          >
-
-          <div class="video-card__play">
-            <svg viewBox="0 0 24 24">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </div>
-
+          <img class="video-card__thumb" src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=700&q=80" alt="Vídeo Boda">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           <div class="video-card__info">
-
-            <h3 class="video-card__title">
-              Wedding Film — Ana & Carlos
-            </h3>
-
-            <p class="video-card__category">
-              Bodas
-            </p>
-
+            <h3 class="video-card__title">Wedding Film — Ana & Carlos</h3>
+            <p class="video-card__category">Bodas</p>
           </div>
-
         </div>
-
+        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+          <img class="video-card__thumb" src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700&q=80" alt="Vídeo Evento">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <div class="video-card__info">
+            <h3 class="video-card__title">Cobertura — Gala Corporativa</h3>
+            <p class="video-card__category">Eventos</p>
+          </div>
+        </div>
+        <div class="video-card" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+          <img class="video-card__thumb" src="https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=700&q=80" alt="Vídeo Comunión">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <div class="video-card__info">
+            <h3 class="video-card__title">Comunión — Pablo</h3>
+            <p class="video-card__category">Comuniones</p>
+          </div>
+        </div>
       </div>
-
     </div>
-
   </section>
 
-  <!-- ═══════════ VIDEO MODAL ═══════════ -->
+  <!-- Video Modal -->
   <div class="video-modal" id="videoModal">
-
-    <button class="video-modal__close" onclick="closeVideoModal()">
-      ✕
-    </button>
-
+    <button class="video-modal__close" onclick="closeVideoModal()">✕</button>
     <div class="video-modal__content">
-
-      <iframe
-        id="videoFrame"
-        src=""
-        allowfullscreen>
-      </iframe>
-
+      <iframe id="videoFrame" src="" allowfullscreen></iframe>
     </div>
-
   </div>
 
   <!-- ═══════════ SOBRE MÍ ═══════════ -->
   <section class="section section--gradient" id="sobre-mi">
-
     <div class="container">
-
       <div class="about-grid fade-in">
-
         <div class="about__image">
-
-          <img
-            src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80"
-            alt="Diego Rico"
-          >
-
+          <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Fotógrafo">
         </div>
-
         <div class="about__text">
-
-          <p class="section__tag">
-            Sobre mí
-          </p>
-
-          <h2>
-            Pasión detrás del
-            <em style="color:var(--accent)">objetivo</em>
-          </h2>
-
-          <p>
-            Soy Diego Rico, fotógrafo y videógrafo especializado en capturar emociones reales con una estética elegante y cinematográfica.
-          </p>
-
-          <p>
-            Trabajo sesiones de boda, comuniones, eventos y contenido visual profesional buscando siempre imágenes naturales, auténticas y atemporales.
-          </p>
-
-          <p>
-            Mi objetivo no es solo hacer fotos bonitas, sino crear recuerdos que transmitan exactamente cómo se vivió cada momento.
-          </p>
-
+          <p class="section__tag">Sobre mí</p>
+          <h2>Pasión detrás del <em style="color:var(--accent)">objetivo</em></h2>
+          <p>Soy fotógrafo y videógrafo profesional con más de 10 años de experiencia capturando momentos irrepetibles. Mi enfoque combina un estilo documental con una estética cinematográfica que transforma cada imagen en una pieza narrativa.</p>
+          <p>He trabajado con marcas, medios de comunicación y cientos de familias que buscan algo más que una simple foto: buscan una experiencia visual que les acompañe para siempre.</p>
           <div class="about__stats">
-
-            <div>
-              <div class="about__stat-number">
-                +500
-              </div>
-
-              <div class="about__stat-label">
-                Sesiones
-              </div>
-            </div>
-
-            <div>
-              <div class="about__stat-number">
-                +10
-              </div>
-
-              <div class="about__stat-label">
-                Años
-              </div>
-            </div>
-
-            <div>
-              <div class="about__stat-number">
-                +50
-              </div>
-
-              <div class="about__stat-label">
-                Eventos
-              </div>
-            </div>
-
+            <div><div class="about__stat-number">+500</div><div class="about__stat-label">Sesiones</div></div>
+            <div><div class="about__stat-number">+10</div><div class="about__stat-label">Años exp.</div></div>
+            <div><div class="about__stat-number">+50</div><div class="about__stat-label">Empresas</div></div>
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
 
   <!-- ═══════════ RESERVAS ═══════════ -->
   <section class="section section--dark" id="reservas">
-
     <div class="container">
-
       <div class="section__header fade-in">
-
-        <p class="section__tag">
-          Reservas
-        </p>
-
-        <h2 class="section__title">
-          Agenda tu sesión
-        </h2>
-
-        <p class="section__subtitle">
-          Reserva una llamada o consulta fácilmente
-        </p>
-
+        <p class="section__tag">Reservas</p>
+        <h2 class="section__title">Agenda tu sesión</h2>
+        <p class="section__subtitle">Elige cómo prefieres empezar y reserva directamente</p>
       </div>
-
       <div class="booking-cards fade-in">
-
-        <!-- CARD -->
         <div class="booking-card">
-
           <div class="booking-card__icon">
-
-            <svg viewBox="0 0 24 24">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-            </svg>
-
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           </div>
-
-          <h3>
-            Llamada Inicial
-          </h3>
-
-          <p>
-            Una reunión rápida para conocer tu idea y resolver dudas.
-          </p>
-
-          <a
-            href="https://calendly.com/"
-            target="_blank"
-            class="btn btn--primary"
-            style="width:100%;justify-content:center;"
-          >
-            Reservar Llamada
-          </a>
-
+          <h3>Llamada de Asesoramiento</h3>
+          <p>15 minutos para resolver tus dudas y definir el estilo perfecto para tu sesión.</p>
+          <a href="#contacto" class="btn btn--primary" style="width:100%;justify-content:center;">Agendar Llamada</a>
         </div>
-
-        <!-- CARD -->
         <div class="booking-card">
-
           <div class="booking-card__icon">
-
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="4" width="18" height="18" rx="2"/>
-            </svg>
-
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           </div>
-
-          <h3>
-            Planificación
-          </h3>
-
-          <p>
-            Organizamos cada detalle de tu sesión o evento.
-          </p>
-
-          <a
-            href="https://calendly.com/"
-            target="_blank"
-            class="btn btn--outline"
-            style="width:100%;justify-content:center;"
-          >
-            Planificar
-          </a>
-
+          <h3>Reunión de Planificación</h3>
+          <p>Nos sentamos juntos para diseñar cada detalle de tu evento o sesión a medida.</p>
+          <a href="#contacto" class="btn btn--outline" style="width:100%;justify-content:center;">Planificar Reunión</a>
         </div>
-
-        <!-- CARD -->
         <div class="booking-card">
-
           <div class="booking-card__icon">
-
-            <svg viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
-
-          <h3>
-            Reserva Directa
-          </h3>
-
-          <p>
-            Si ya tienes una fecha clara, puedes reservar directamente.
-          </p>
-
-          <a
-            href="#contacto"
-            class="btn btn--gold"
-            style="width:100%;justify-content:center;"
-          >
-            Reservar Fecha
-          </a>
-
+          <h3>Reserva Directa</h3>
+          <p>Si ya tienes todo claro, reserva directamente tu fecha y recibe confirmación al instante.</p>
+          <a href="#contacto" class="btn btn--gold" style="width:100%;justify-content:center;">Reservar Fecha</a>
         </div>
-
       </div>
 
+      <!-- FAQ -->
+      <div style="margin-top:5rem;" class="fade-in">
+        <div class="section__header">
+          <p class="section__tag">FAQ</p>
+          <h2 class="section__title">Preguntas Frecuentes</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-item__question">¿Cuánto tiempo tarda la entrega del material?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-item__answer"><p>El plazo habitual es de 3 a 4 semanas para fotografía y de 6 a 8 semanas para vídeo. Para entregas urgentes (prensa/eventos), el material editado puede estar disponible en menos de 48 horas.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question">¿Qué ropa debo llevar a la sesión?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-item__answer"><p>Te enviaremos una guía de preparación personalizada tras confirmar tu reserva. En general, recomendamos colores neutros, evitar estampados muy llamativos y apostar por la comodidad.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question">¿Qué pasa si llueve el día de la sesión?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-item__answer"><p>Si el tiempo no acompaña, reprogramamos la sesión sin coste adicional. En algunos casos, ¡la lluvia puede crear fotos increíbles!</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question">¿Cómo funciona la compra de fotos extras?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-item__answer"><p>Las fotos extras se muestran con marca de agua en tu galería privada. Selecciona las que quieras: cuantas más compres, menor precio por unidad. Tras pagar, se desbloquean automáticamente en máxima calidad.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__question">¿Se puede pagar a plazos?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-item__answer"><p>Sí. Para packs de alto valor ofrecemos pago fraccionado: 30% al reservar, 40% el día del evento y 30% a la entrega del material.</p></div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </section>
 
   <!-- ═══════════ CONTACTO ═══════════ -->
   <section class="section section--gradient" id="contacto">
-
     <div class="container">
-
       <div class="contact-grid fade-in">
-
-        <!-- INFO -->
         <div class="contact__info">
-
-          <p class="section__tag">
-            Contacto
-          </p>
-
-          <h2>
-            Hablemos de tu
-            <em style="color:var(--accent)">proyecto</em>
-          </h2>
-
-          <p>
-            Cuéntame tu idea y recibirás una respuesta personalizada.
-          </p>
-
+          <p class="section__tag">Contacto</p>
+          <h2>Hablemos de tu <em style="color:var(--accent)">proyecto</em></h2>
+          <p>Cuéntame qué tienes en mente y te responderé en menos de 24 horas con una propuesta personalizada.</p>
           <div class="contact__detail">
-
-            <div class="contact__detail-icon">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              </svg>
-
-            </div>
-
-            <span>
-              diegoricofotos@gmail.com
-            </span>
-
+            <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <span>hola@tunombre.com</span>
           </div>
-
           <div class="contact__detail">
-
-            <div class="contact__detail-icon">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M22 16.92v3"/>
-              </svg>
-
-            </div>
-
-            <span>
-              +34 600 000 000
-            </span>
-
+            <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.56.29 1.1.5 1.63.18.46.08.98-.26 1.32l-1.27 1.27a16 16 0 006 6l1.27-1.27a2 2 0 011.32-.26c.53.21 1.07.38 1.63.5A2 2 0 0122 16.92z"/></svg></div>
+            <span>+34 600 000 000</span>
           </div>
-
           <div class="contact__detail">
-
-            <div class="contact__detail-icon">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13"/>
-              </svg>
-
-            </div>
-
-            <span>
-              Madrid, España
-            </span>
-
+            <div class="contact__detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <span>Madrid, España</span>
           </div>
-
         </div>
 
-        <!-- FORM -->
+        <!-- Formulario Dinámico -->
         <div class="form">
-
           <div class="form__group">
-
-            <label class="form__label">
-              Nombre completo
-            </label>
-
-            <input
-              type="text"
-              class="form__input"
-              placeholder="Tu nombre"
-            >
-
+            <label class="form__label" for="nombre">Nombre completo</label>
+            <input type="text" class="form__input" id="nombre" placeholder="Tu nombre">
           </div>
-
           <div class="form__row">
-
             <div class="form__group">
-
-              <label class="form__label">
-                Email
-              </label>
-
-              <input
-                type="email"
-                class="form__input"
-                placeholder="tu@email.com"
-              >
-
+              <label class="form__label" for="email">Email</label>
+              <input type="email" class="form__input" id="email" placeholder="tu@email.com">
             </div>
-
             <div class="form__group">
-
-              <label class="form__label">
-                Teléfono
-              </label>
-
-              <input
-                type="tel"
-                class="form__input"
-                placeholder="+34 600 000 000"
-              >
-
+              <label class="form__label" for="telefono">Teléfono</label>
+              <input type="tel" class="form__input" id="telefono" placeholder="+34 600 000 000">
             </div>
-
           </div>
-
           <div class="form__group">
-
-            <label class="form__label">
-              Servicio
-            </label>
-
-            <select class="form__select">
-
-              <option>
-                Selecciona un servicio
-              </option>
-
-              <option>
-                Bodas
-              </option>
-
-              <option>
-                Comuniones
-              </option>
-
-              <option>
-                Eventos
-              </option>
-
-              <option>
-                Prensa
-              </option>
-
+            <label class="form__label" for="servicio">Servicio que te interesa</label>
+            <select class="form__select" id="servicio" onchange="toggleConditionalFields()">
+              <option value="">Selecciona un servicio...</option>
+              <option value="bodas">Bodas</option>
+              <option value="comuniones">Comuniones</option>
+              <option value="eventos">Eventos</option>
+              <option value="prensa">Prensa / Corporativo</option>
+              <option value="otro">Otro</option>
             </select>
-
           </div>
-
+          <!-- Campos condicionales: Bodas -->
+          <div class="form__conditional" id="fields-bodas">
+            <div class="form__row">
+              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Finca, iglesia..."></div>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Estilo deseado</label>
+              <select class="form__select"><option value="">Selecciona estilo...</option><option>Clásico / Elegante</option><option>Documental / Natural</option><option>Cinematográfico</option><option>Editorial / Moda</option></select>
+            </div>
+          </div>
+          <!-- Campos condicionales: Comuniones -->
+          <div class="form__conditional" id="fields-comuniones">
+            <div class="form__row">
+              <div class="form__group"><label class="form__label">Fecha de la comunión</label><input type="date" class="form__input"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Iglesia, restaurante..."></div>
+            </div>
+          </div>
+          <!-- Campos condicionales: Prensa -->
+          <div class="form__conditional" id="fields-prensa">
+            <div class="form__group"><label class="form__label">Empresa / Medio</label><input type="text" class="form__input" placeholder="Nombre de la empresa"></div>
+            <div class="form__row">
+              <div class="form__group"><label class="form__label">CIF / NIF facturación</label><input type="text" class="form__input" placeholder="B12345678"></div>
+              <div class="form__group"><label class="form__label">Horario del evento</label><input type="text" class="form__input" placeholder="10:00 - 14:00"></div>
+            </div>
+            <div class="form__group"><label class="form__label">Requerimientos de cobertura</label><textarea class="form__textarea" placeholder="Entregas en tiempo real, resolución, etc."></textarea></div>
+          </div>
+          <!-- Campos condicionales: Eventos -->
+          <div class="form__conditional" id="fields-eventos">
+            <div class="form__row">
+              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Venue, dirección..."></div>
+            </div>
+            <div class="form__group"><label class="form__label">Tipo de evento</label><input type="text" class="form__input" placeholder="Gala, conferencia, deportivo..."></div>
+          </div>
           <div class="form__group">
-
-            <label class="form__label">
-              Cuéntame más
-            </label>
-
-            <textarea
-              class="form__textarea"
-              placeholder="Describe tu proyecto..."
-            ></textarea>
-
+            <label class="form__label" for="mensaje">Cuéntame más</label>
+            <textarea class="form__textarea" id="mensaje" placeholder="Describe tu proyecto, ideas, referencias..."></textarea>
           </div>
-
-          <button
-            class="btn btn--primary"
-            style="width:100%;justify-content:center;"
-          >
-            Enviar Mensaje
-          </button>
-
+          <button class="btn btn--primary" style="width:100%;justify-content:center;" onclick="alert('¡Gracias! Tu mensaje ha sido enviado. Te responderemos en menos de 24 horas.')">Enviar Mensaje</button>
         </div>
-
       </div>
-
     </div>
-
   </section>
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="footer">
-
     <div class="container">
-
       <div class="footer__grid">
-
-        <!-- BRAND -->
         <div class="footer__brand">
-
-          <img
-            src="img/logo en blanco.png"
-            alt="Diego Rico Fotos"
-            class="footer__logo"
-          >
-
-          <p>
-            Fotografía y vídeo profesional en Madrid.
-            Bodas, comuniones, eventos y contenido audiovisual
-            con una estética natural, elegante y cinematográfica.
-          </p>
-
+          <h3>TU<span style="color:var(--accent)">NOMBRE</span></h3>
+          <p>Fotografía y vídeo profesional en Madrid. Bodas, comuniones, eventos y prensa con un sello personal e irrepetible.</p>
         </div>
-
-        <!-- NAV -->
-        <div>
-
-          <h4>
-            Navegación
-          </h4>
-
-          <ul class="footer__links">
-
-            <li><a href="#portfolio">Portfolio</a></li>
-
-            <li><a href="#video">Vídeo</a></li>
-
-            <li><a href="#sobre-mi">Sobre mí</a></li>
-
-            <li><a href="#reservas">Reservas</a></li>
-
-          </ul>
-
-        </div>
-
-        <!-- SERVICIOS -->
-        <div>
-
-          <h4>
-            Servicios
-          </h4>
-
-          <ul class="footer__links">
-
-            <li><a href="#">Bodas</a></li>
-
-            <li><a href="#">Comuniones</a></li>
-
-            <li><a href="#">Eventos</a></li>
-
-            <li><a href="#">Prensa</a></li>
-
-          </ul>
-
-        </div>
-
-        <!-- LEGAL -->
-        <div>
-
-          <h4>
-            Legal
-          </h4>
-
-          <ul class="footer__links">
-
-            <li><a href="#">Privacidad</a></li>
-
-            <li><a href="#">Cookies</a></li>
-
-            <li><a href="#">Aviso Legal</a></li>
-
-          </ul>
-
-        </div>
-
+        <div><h4>Navegación</h4><ul class="footer__links"><li><a href="#portfolio">Portfolio</a></li><li><a href="#video">Vídeo</a></li><li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#reservas">Reservas</a></li></ul></div>
+        <div><h4>Servicios</h4><ul class="footer__links"><li><a href="#">Bodas</a></li><li><a href="#">Comuniones</a></li><li><a href="#">Eventos</a></li><li><a href="#">Prensa</a></li></ul></div>
+        <div><h4>Legal</h4><ul class="footer__links"><li><a href="#">Política de Privacidad</a></li><li><a href="#">Aviso Legal</a></li><li><a href="#">Cookies</a></li></ul></div>
       </div>
-
-      <div class="footer__bottom">
-
-        <p>
-          © 2026 Diego Rico Fotos — Todos los derechos reservados.
-        </p>
-
-      </div>
-
+      <div class="footer__bottom"><p>&copy; 2026 TUNOMBRE — Todos los derechos reservados.</p></div>
     </div>
-
   </footer>
 
   <!-- ═══════════ SCRIPTS ═══════════ -->
   <script>
-
-    // NAVBAR SCROLL
+    // Navbar scroll
     const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
-    window.addEventListener('scroll', () => {
+    // Mobile menu
+    document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    document.querySelectorAll('#navLinks a').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
-      navbar.classList.toggle(
-        'scrolled',
-        window.scrollY > 60
-      );
+    // Portfolio filter
+    const tabs = document.querySelectorAll('.portfolio__tab');
+    const items = document.querySelectorAll('.masonry__item');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const f = tab.dataset.filter;
+      items.forEach(item => item.style.display = (f === 'all' || item.dataset.category === f) ? '' : 'none');
+    }));
 
-    });
+    // Lightbox
+    let lbImages = [], lbIdx = 0;
+    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg');
+    items.forEach(item => item.addEventListener('click', () => {
+      lbImages = [...document.querySelectorAll('.masonry__item:not([style*="display: none"]) img')];
+      lbIdx = lbImages.indexOf(item.querySelector('img'));
+      lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400');
+      lb.classList.add('active'); document.body.style.overflow = 'hidden';
+    }));
+    function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
+    function navLightbox(d) { lbIdx = (lbIdx + d + lbImages.length) % lbImages.length; lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400'); }
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (!lb.classList.contains('active')) return; if (e.key==='Escape') closeLightbox(); if (e.key==='ArrowLeft') navLightbox(-1); if (e.key==='ArrowRight') navLightbox(1); });
 
-    // MOBILE MENU
-    document
-      .getElementById('navToggle')
-      .addEventListener('click', () => {
+    // Video Modal
+    function openVideoModal(url) { document.getElementById('videoFrame').src = url; document.getElementById('videoModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeVideoModal() { document.getElementById('videoFrame').src = ''; document.getElementById('videoModal').classList.remove('active'); document.body.style.overflow = ''; }
+    document.getElementById('videoModal').addEventListener('click', e => { if (e.target === document.getElementById('videoModal')) closeVideoModal(); });
 
-        document
+    // Conditional form fields
+    function toggleConditionalFields() {
+      const v = document.getElementById('servicio').value;
+      document.querySelectorAll('.form__conditional').forEach(el => el.classList.remove('visible'));
+      if (v) { const t = document.getElementById('fields-' + v); if (t) t.classList.add('visible'); }
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item__question').forEach(btn => btn.addEventListener('click', () => {
+      const item = btn.parentElement, was = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!was) item.classList.add('active');
+    }));
+
+    // Scroll fade-in
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
