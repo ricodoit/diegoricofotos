@@ -363,43 +363,50 @@
           <!-- Campos condicionales: Bodas -->
           <div class="form__conditional" id="fields-bodas">
             <div class="form__row">
-              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input"></div>
-              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Finca, iglesia..."></div>
+              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input" id="fechaEvento"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" id="localizacion" placeholder="Finca, iglesia..."></div>
             </div>
             <div class="form__group">
               <label class="form__label">Estilo deseado</label>
-              <select class="form__select"><option value="">Selecciona estilo...</option><option>Clásico / Elegante</option><option>Documental / Natural</option><option>Cinematográfico</option><option>Editorial / Moda</option></select>
+             <select class="form__select" id="estilo"><option value="">Selecciona estilo...</option><option>Clásico / Elegante</option><option>Documental / Natural</option><option>Cinematográfico</option><option>Editorial / Moda</option></select>
             </div>
           </div>
           <!-- Campos condicionales: Comuniones -->
           <div class="form__conditional" id="fields-comuniones">
             <div class="form__row">
-              <div class="form__group"><label class="form__label">Fecha de la comunión</label><input type="date" class="form__input"></div>
-              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Iglesia, restaurante..."></div>
+              <div class="form__group"><label class="form__label">Fecha de la comunión</label><input type="date" class="form__input" id="fechaComunion"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" id="localizacionComunion" placeholder="Iglesia, restaurante..."></div>
             </div>
           </div>
           <!-- Campos condicionales: Prensa -->
           <div class="form__conditional" id="fields-prensa">
-            <div class="form__group"><label class="form__label">Empresa / Medio</label><input type="text" class="form__input" placeholder="Nombre de la empresa"></div>
+            <div class="form__group"><label class="form__label">Empresa / Medio</label><input type="text" class="form__input" id="empresa" placeholder="Nombre de la empresa"></div>
             <div class="form__row">
-              <div class="form__group"><label class="form__label">CIF / NIF facturación</label><input type="text" class="form__input" placeholder="B12345678"></div>
-              <div class="form__group"><label class="form__label">Horario del evento</label><input type="text" class="form__input" placeholder="10:00 - 14:00"></div>
+              <div class="form__group"><label class="form__label">CIF / NIF facturación</label><input type="text" class="form__input" id="cif" placeholder="B12345678"></div>
+              <div class="form__group"><label class="form__label">Horario del evento</label><input type="text" class="form__input" id="horario" placeholder="10:00 - 14:00"></div>
             </div>
-            <div class="form__group"><label class="form__label">Requerimientos de cobertura</label><textarea class="form__textarea" placeholder="Entregas en tiempo real, resolución, etc."></textarea></div>
+            <div class="form__group"><label class="form__label">Requerimientos de cobertura</label><textarea class="form__textarea" id="requerimientos" placeholder="Entregas en tiempo real, resolución, etc."></textarea></div>
           </div>
           <!-- Campos condicionales: Eventos -->
           <div class="form__conditional" id="fields-eventos">
             <div class="form__row">
-              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input"></div>
-              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" placeholder="Venue, dirección..."></div>
+              <div class="form__group"><label class="form__label">Fecha del evento</label><input type="date" class="form__input" id="fechaEventoCorporativo"></div>
+              <div class="form__group"><label class="form__label">Localización</label><input type="text" class="form__input" id="localizacionEvento" placeholder="Venue, dirección..."></div>
             </div>
-            <div class="form__group"><label class="form__label">Tipo de evento</label><input type="text" class="form__input" placeholder="Gala, conferencia, deportivo..."></div>
+            <div class="form__group"><label class="form__label">Tipo de evento</label><input type="text" class="form__input" id="tipoEvento" placeholder="Gala, conferencia, deportivo..."></div>
           </div>
           <div class="form__group">
             <label class="form__label" for="mensaje">Cuéntame más</label>
             <textarea class="form__textarea" id="mensaje" placeholder="Describe tu proyecto, ideas, referencias..."></textarea>
           </div>
-          <button class="btn btn--primary" style="width:100%;justify-content:center;" onclick="alert('¡Gracias! Tu mensaje ha sido enviado. Te responderemos en menos de 24 horas.')">Enviar Mensaje</button>
+          <button
+    class="btn btn--primary"
+    style="width:100%;justify-content:center;"
+    onclick="enviarFormulario()">
+
+    Enviar Mensaje
+
+</button>
         </div>
       </div>
     </div>
