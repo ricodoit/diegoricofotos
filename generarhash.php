@@ -1,6 +1,6 @@
 <?php
 
 echo password_hash(
-    "AQUI_TU_CONTRASEÑA",
+    "RiCoDoIt03",
     PASSWORD_DEFAULT
 );
