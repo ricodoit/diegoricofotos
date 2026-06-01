@@ -97,16 +97,13 @@ async function enviarFormulario() {
 
   try {
 
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbxb1F7TUuNtLBNMIBjijW297IZiFnvvhPD5-4SCxgDowsISCPKMl3PighmQRfTsGLdnzw/exec",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
-      }
-    );
+  const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbxb1F7TUuNtLBNMIBjijW297IZiFnvvhPD5-4SCxgDowsISCPKMl3PighmQRfTsGLdnzw/exec",
+  {
+    method: "POST",
+    body: JSON.stringify(datos)
+  }
+);
 
     if (!response.ok) {
       throw new Error("Error en la petición");
