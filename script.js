@@ -1,3 +1,7 @@
+// ======================================
+// CUENTA ATRÁS
+// ======================================
+
 const weddingDate = new Date("July 10, 2027 11:00:00").getTime();
 
 function updateCountdown() {
@@ -8,13 +12,23 @@ function updateCountdown() {
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+
+  if (daysEl) daysEl.innerText = days;
+  if (hoursEl) hoursEl.innerText = hours;
+  if (minutesEl) minutesEl.innerText = minutes;
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+
+// ======================================
+// MÚSICA
+// ======================================
+
 let audio = new Audio("img/musica.mp3");
 audio.loop = true;
 
@@ -25,34 +39,35 @@ function toggleMusic() {
     audio.pause();
   }
 }
-function openLightbox(img) {
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-
-  lightbox.style.display = "flex";
-  lightboxImg.src = img.src;
-}
-
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
 
 
-const tabs = document.querySelectorAll(".tab-btn");
-const contents = document.querySelectorAll(".tab-content");
+// ======================================
+// TABS ANTIGUAS (si existen)
+// ======================================
 
-tabs.forEach(tab => {
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+tabButtons.forEach(tab => {
   tab.addEventListener("click", () => {
 
-    tabs.forEach(t => t.classList.remove("active"));
-    contents.forEach(c => c.classList.remove("active"));
+    tabButtons.forEach(t => t.classList.remove("active"));
+    tabContents.forEach(c => c.classList.remove("active"));
 
     tab.classList.add("active");
 
-    document.getElementById(tab.dataset.tab).classList.add("active");
+    const target = document.getElementById(tab.dataset.tab);
 
+    if (target) {
+      target.classList.add("active");
+    }
   });
 });
+
+
+// ======================================
+// FORMULARIO GOOGLE SHEETS
+// ======================================
 
 async function enviarFormulario() {
 
@@ -82,7 +97,7 @@ async function enviarFormulario() {
 
   try {
 
-    await fetch(
+    const response = await fetch(
       "https://script.google.com/macros/s/AKfycbxb1F7TUuNtLBNMIBjijW297IZiFnvvhPD5-4SCxgDowsISCPKMl3PighmQRfTsGLdnzw/exec",
       {
         method: "POST",
@@ -93,69 +108,274 @@ async function enviarFormulario() {
       }
     );
 
+    if (!response.ok) {
+      throw new Error("Error en la petición");
+    }
+
     alert("¡Solicitud enviada correctamente!");
 
-  } catch(error) {
+  } catch (error) {
 
     console.error(error);
     alert("Error al enviar el formulario");
 
   }
+}
+
+
+// ======================================
+// NAVBAR
+// ======================================
+
+const navbar = document.getElementById("navbar");
+
+if (navbar) {
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 60);
+  });
+}
+
+
+// ======================================
+// MENÚ MÓVIL
+// ======================================
+
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (navToggle && navLinks) {
+
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+    });
+  });
+}
+
+
+// ======================================
+// FILTRO PORTFOLIO
+// ======================================
+
+const portfolioTabs = document.querySelectorAll(".portfolio__tab");
+const items = document.querySelectorAll(".masonry__item");
+
+portfolioTabs.forEach(tab => {
+
+  tab.addEventListener("click", () => {
+
+    portfolioTabs.forEach(t => t.classList.remove("active"));
+
+    tab.classList.add("active");
+
+    const filtro = tab.dataset.filter;
+
+    items.forEach(item => {
+
+      item.style.display =
+        filtro === "all" || item.dataset.category === filtro
+          ? ""
+          : "none";
+
+    });
+
+  });
+
+});
+
+
+// ======================================
+// LIGHTBOX
+// ======================================
+
+let lbImages = [];
+let lbIdx = 0;
+
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightboxImg");
+
+if (items.length && lb && lbImg) {
+
+  items.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+      lbImages = [
+        ...document.querySelectorAll(
+          '.masonry__item:not([style*="display: none"]) img'
+        )
+      ];
+
+      lbIdx = lbImages.indexOf(item.querySelector("img"));
+
+      lbImg.src = lbImages[lbIdx].src.replace("w=600", "w=1400");
+
+      lb.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+    });
+
+  });
+}
+
+function closeLightbox() {
+
+  if (!lb) return;
+
+  lb.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function navLightbox(direction) {
+
+  if (!lbImages.length) return;
+
+  lbIdx = (lbIdx + direction + lbImages.length) % lbImages.length;
+
+  lbImg.src = lbImages[lbIdx].src.replace("w=600", "w=1400");
+}
+
+if (lb) {
+
+  lb.addEventListener("click", e => {
+
+    if (e.target === lb) {
+      closeLightbox();
+    }
+
+  });
+}
+
+document.addEventListener("keydown", e => {
+
+  if (!lb || !lb.classList.contains("active")) return;
+
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") navLightbox(-1);
+  if (e.key === "ArrowRight") navLightbox(1);
+
+});
+
+
+// ======================================
+// VÍDEO MODAL
+// ======================================
+
+function openVideoModal(url) {
+
+  const frame = document.getElementById("videoFrame");
+  const modal = document.getElementById("videoModal");
+
+  if (!frame || !modal) return;
+
+  frame.src = url;
+
+  modal.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+function closeVideoModal() {
+
+  const frame = document.getElementById("videoFrame");
+  const modal = document.getElementById("videoModal");
+
+  if (!frame || !modal) return;
+
+  frame.src = "";
+
+  modal.classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+const videoModal = document.getElementById("videoModal");
+
+if (videoModal) {
+
+  videoModal.addEventListener("click", e => {
+
+    if (e.target === videoModal) {
+      closeVideoModal();
+    }
+
+  });
 
 }
 
 
- // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+// ======================================
+// FORMULARIO CONDICIONAL
+// ======================================
 
-    // Mobile menu
-    document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-    document.querySelectorAll('#navLinks a').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+function toggleConditionalFields() {
 
-    // Portfolio filter
-    const tabs = document.querySelectorAll('.portfolio__tab');
-    const items = document.querySelectorAll('.masonry__item');
-    tabs.forEach(tab => tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const f = tab.dataset.filter;
-      items.forEach(item => item.style.display = (f === 'all' || item.dataset.category === f) ? '' : 'none');
-    }));
+  const servicio = document.getElementById("servicio")?.value;
 
-    // Lightbox
-    let lbImages = [], lbIdx = 0;
-    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg');
-    items.forEach(item => item.addEventListener('click', () => {
-      lbImages = [...document.querySelectorAll('.masonry__item:not([style*="display: none"]) img')];
-      lbIdx = lbImages.indexOf(item.querySelector('img'));
-      lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400');
-      lb.classList.add('active'); document.body.style.overflow = 'hidden';
-    }));
-    function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
-    function navLightbox(d) { lbIdx = (lbIdx + d + lbImages.length) % lbImages.length; lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400'); }
-    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (!lb.classList.contains('active')) return; if (e.key==='Escape') closeLightbox(); if (e.key==='ArrowLeft') navLightbox(-1); if (e.key==='ArrowRight') navLightbox(1); });
+  document.querySelectorAll(".form__conditional").forEach(el => {
+    el.classList.remove("visible");
+  });
 
-    // Video Modal
-    function openVideoModal(url) { document.getElementById('videoFrame').src = url; document.getElementById('videoModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeVideoModal() { document.getElementById('videoFrame').src = ''; document.getElementById('videoModal').classList.remove('active'); document.body.style.overflow = ''; }
-    document.getElementById('videoModal').addEventListener('click', e => { if (e.target === document.getElementById('videoModal')) closeVideoModal(); });
+  if (!servicio) return;
 
-    // Conditional form fields
-    function toggleConditionalFields() {
-      const v = document.getElementById('servicio').value;
-      document.querySelectorAll('.form__conditional').forEach(el => el.classList.remove('visible'));
-      if (v) { const t = document.getElementById('fields-' + v); if (t) t.classList.add('visible'); }
+  const target = document.getElementById("fields-" + servicio);
+
+  if (target) {
+    target.classList.add("visible");
+  }
+}
+
+
+// ======================================
+// FAQ
+// ======================================
+
+document.querySelectorAll(".faq-item__question").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const item = btn.parentElement;
+
+    const estabaAbierto = item.classList.contains("active");
+
+    document.querySelectorAll(".faq-item").forEach(i => {
+      i.classList.remove("active");
+    });
+
+    if (!estabaAbierto) {
+      item.classList.add("active");
     }
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-item__question').forEach(btn => btn.addEventListener('click', () => {
-      const item = btn.parentElement, was = item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-      if (!was) item.classList.add('active');
-    }));
+  });
 
-    // Scroll fade-in
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+});
+
+
+// ======================================
+// ANIMACIONES SCROLL
+// ======================================
+
+const observer = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+
+    });
+
+  },
+  {
+    threshold: 0.1
+  }
+);
+
+document.querySelectorAll(".fade-in").forEach(el => {
+  observer.observe(el);
+});
