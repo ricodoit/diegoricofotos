@@ -460,63 +460,7 @@
     </div>
   </footer>
 
-  <!-- ═══════════ SCRIPTS ═══════════ -->
-  <script>
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
-
-    // Mobile menu
-    document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-    document.querySelectorAll('#navLinks a').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-
-    // Portfolio filter
-    const tabs = document.querySelectorAll('.portfolio__tab');
-    const items = document.querySelectorAll('.masonry__item');
-    tabs.forEach(tab => tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const f = tab.dataset.filter;
-      items.forEach(item => item.style.display = (f === 'all' || item.dataset.category === f) ? '' : 'none');
-    }));
-
-    // Lightbox
-    let lbImages = [], lbIdx = 0;
-    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg');
-    items.forEach(item => item.addEventListener('click', () => {
-      lbImages = [...document.querySelectorAll('.masonry__item:not([style*="display: none"]) img')];
-      lbIdx = lbImages.indexOf(item.querySelector('img'));
-      lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400');
-      lb.classList.add('active'); document.body.style.overflow = 'hidden';
-    }));
-    function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
-    function navLightbox(d) { lbIdx = (lbIdx + d + lbImages.length) % lbImages.length; lbImg.src = lbImages[lbIdx].src.replace('w=600', 'w=1400'); }
-    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (!lb.classList.contains('active')) return; if (e.key==='Escape') closeLightbox(); if (e.key==='ArrowLeft') navLightbox(-1); if (e.key==='ArrowRight') navLightbox(1); });
-
-    // Video Modal
-    function openVideoModal(url) { document.getElementById('videoFrame').src = url; document.getElementById('videoModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeVideoModal() { document.getElementById('videoFrame').src = ''; document.getElementById('videoModal').classList.remove('active'); document.body.style.overflow = ''; }
-    document.getElementById('videoModal').addEventListener('click', e => { if (e.target === document.getElementById('videoModal')) closeVideoModal(); });
-
-    // Conditional form fields
-    function toggleConditionalFields() {
-      const v = document.getElementById('servicio').value;
-      document.querySelectorAll('.form__conditional').forEach(el => el.classList.remove('visible'));
-      if (v) { const t = document.getElementById('fields-' + v); if (t) t.classList.add('visible'); }
-    }
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-item__question').forEach(btn => btn.addEventListener('click', () => {
-      const item = btn.parentElement, was = item.classList.contains('active');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-      if (!was) item.classList.add('active');
-    }));
-
-    // Scroll fade-in
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-  </script>
+  
   <script src="script.js"></script>
 </body>
 </html>
