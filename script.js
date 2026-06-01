@@ -82,36 +82,27 @@ async function enviarFormulario() {
     localizacion: document.getElementById("localizacion")?.value || "",
     estilo: document.getElementById("estilo")?.value || "",
 
-    fechaComunion: document.getElementById("fechaComunion")?.value || "",
-    localizacionComunion: document.getElementById("localizacionComunion")?.value || "",
-
     empresa: document.getElementById("empresa")?.value || "",
     cif: document.getElementById("cif")?.value || "",
     horario: document.getElementById("horario")?.value || "",
     requerimientos: document.getElementById("requerimientos")?.value || "",
-
-    fechaEventoCorporativo: document.getElementById("fechaEventoCorporativo")?.value || "",
-    localizacionEvento: document.getElementById("localizacionEvento")?.value || "",
     tipoEvento: document.getElementById("tipoEvento")?.value || ""
   };
 
   try {
 
-  const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbxb1F7TUuNtLBNMIBjijW297IZiFnvvhPD5-4SCxgDowsISCPKMl3PighmQRfTsGLdnzw/exec",
-  {
-    method: "POST",
-    body: JSON.stringify(datos)
-  }
-);
-
-    if (!response.ok) {
-      throw new Error("Error en la petición");
-    }
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxb1F7TUuNtLBNMIBjijW297IZiFnvvhPD5-4SCxgDowsISCPKMl3PighmQRfTsGLdnzw/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(datos)
+      }
+    );
 
     alert("¡Solicitud enviada correctamente!");
 
-  } catch (error) {
+  } catch(error) {
 
     console.error(error);
     alert("Error al enviar el formulario");
